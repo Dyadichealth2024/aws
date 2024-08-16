@@ -106,3 +106,10 @@ dist
 
 # wincompare file
 .bak
+
+
+# amplify
+node_modules
+.amplify
+amplify_outputs*
+amplifyconfiguration*

@@ -43,6 +43,7 @@
     "amazon-cognito-identity-js": "^6.3.12",
     "apexcharts": "^3.48.0",
     "autosuggest-highlight": "^3.3.4",
+    "aws-amplify": "^6.5.1",
     "axios": "^1.6.8",
     "chance": "^1.1.11",
     "crypto-js": "^4.2.0",
@@ -143,9 +144,15 @@
     ]
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.1.0",
+    "@aws-amplify/backend-cli": "^1.2.3",
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.24.1",
+    "aws-cdk": "^2.152.0",
+    "aws-cdk-lib": "^2.152.0",
+    "constructs": "^10.3.0",
     "env-cmd": "^10.1.0",
+    "esbuild": "^0.23.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-react-app": "7.0.1",
@@ -157,7 +164,9 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "immutable": "^4.3.5",
     "prettier": "^3.2.5",
-    "react-error-overlay": "6.0.11"
+    "react-error-overlay": "6.0.11",
+    "tsx": "^4.17.0",
+    "typescript": "^5.5.4"
   },
   "packageManager": "yarn@4.1.0"
 }
