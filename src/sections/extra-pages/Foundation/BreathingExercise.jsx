@@ -9,7 +9,7 @@ const BreathingExercise = () => {
     const [timer, setTimer] = useState(30);
     const [intervalId, setIntervalId] = useState(null);
     const [score, setScore] = useState(null);
-    const [isBreathHolding, setIsBreathHolding] = useState(false); // Add this line
+    const [isBreathHolding, setIsBreathHolding] = useState(false);
 
     useEffect(() => {
         if (isBreathing && timer > 0) {
@@ -47,7 +47,7 @@ const BreathingExercise = () => {
 
     const calculateScore = async () => {
         try {
-            const response = await fetch('http://localhost:5000/calculate_score', {
+            const response = await fetch('https://umc7m9lbul.execute-api.us-east-1.amazonaws.com/dev/calculate-lung-health', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,6 +55,7 @@ const BreathingExercise = () => {
                 body: JSON.stringify({
                     age: age,
                     gender: gender,
+                    pulse: pulse,
                     breathHoldTime: breathHoldTime,
                 }),
             });
