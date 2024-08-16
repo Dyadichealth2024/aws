@@ -59,6 +59,7 @@ const BreathingExercise = () => {
                     breathHoldTime: breathHoldTime,
                 }),
             });
+    
             const data = await response.json();
             if (response.ok) {
                 setScore(data.score);
@@ -70,6 +71,7 @@ const BreathingExercise = () => {
             alert('An error occurred while calculating the score.');
         }
     };
+    
 
     return (
         <div style={styles.container}>
