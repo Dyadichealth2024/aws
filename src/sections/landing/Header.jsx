@@ -139,9 +139,9 @@ export default function HeaderPage() {
                       name="knowledge-level"
                       onChange={handleRadioChange}
                     >
-                      <FormControlLabel value="combo" control={<Radio />} label="I don't know anything about DH" />
-                      <FormControlLabel value="apps" control={<Radio />} label="I understand relationship between 2 but like to learn more" />
-                      <FormControlLabel value="technologies" control={<Radio />} label="I know what DH is and like to improve more" />
+                      <FormControlLabel value="combo" control={<Radio />} label="I don't know anything about DH, I would explore" />
+                      <FormControlLabel value="apps" control={<Radio />} label="I have some idea about DH and like to explore further" />
+                      <FormControlLabel value="technologies" control={<Radio />} label="I understand the DH concept well and want to train myself" />
                     </RadioGroup>
                   </FormControl>
                 </motion.div>

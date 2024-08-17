@@ -119,7 +119,7 @@ const Technologies = [
 
 export default function TechnologiesPage() {
   return (
-    <Box sx={{ backgroundColor: '#ffffff', minHeight: '70vh', padding: 3 }}>
+    <Box sx={{ backgroundColor: '#e3e3e3', minHeight: '70vh', padding: 3 }}>
       <Container>
         <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 15, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
           <Grid item xs={12}>

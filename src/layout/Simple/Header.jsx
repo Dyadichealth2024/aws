@@ -117,7 +117,7 @@ export default function Header({ layout = 'landing', ...others }) {
               sx={{
                 alignItems: 'center',
                 display: { xs: 'none', md: 'flex' }, // Changed 'block' to 'flex' to align items horizontally
-                '& .header-link': { fontWeight: 700, '&:hover': { color: 'lightblue' }, color: 'blue', fontSize: 18, fontFamily: 'timesnewroman' },
+                '& .header-link': { fontWeight: 700, '&:hover': { color: 'lightblue' }, color: '#3366ff', fontSize: 18, fontFamily: 'timesnewroman' },
               }}
             >
               <Link
