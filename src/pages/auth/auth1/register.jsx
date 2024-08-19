@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 // material-ui
@@ -15,7 +15,6 @@ import useAuth from 'hooks/useAuth';
 import AuthSocButton from 'sections/auth/AuthSocButton';
 import AuthDivider from 'sections/auth/AuthDivider';
 import AuthWrapper from 'sections/auth/AuthWrapper';
-// Removed FirebaseRegister since we are implementing our own form
 
 // assets
 import imgFacebook from 'assets/images/auth/facebook.svg';
@@ -38,6 +37,7 @@ async function handleRegister(data) {
 
 export default function Register() {
   const { isLoggedIn } = useAuth();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export default function Register() {
     const data = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      companyName: e.target.companyName.value,
+      companyName: e.target.companyName.value || "", // Make companyName optional
       email: e.target.email.value,
       password: e.target.password.value,
     };
@@ -53,11 +53,15 @@ export default function Register() {
     handleRegister(data);
   };
 
+  const handleLogoClick = () => {
+    history.push('/'); // Redirect to homepage on logo click
+  };
+
   return (
     <AuthWrapper>
       <Grid container spacing={3}>
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <Logo />
+          <Logo onClick={handleLogoClick} style={{ cursor: 'pointer' }} /> {/* Clickable logo */}
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={1}>
@@ -107,7 +111,7 @@ export default function Register() {
                 <TextField label="Last Name" name="lastName" fullWidth required />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Company Name" name="companyName" fullWidth required />
+                <TextField label="Company Name" name="companyName" fullWidth /> {/* Optional field */}
               </Grid>
               <Grid item xs={12}>
                 <TextField label="Email" name="email" type="email" fullWidth required />
