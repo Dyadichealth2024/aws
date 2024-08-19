@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Updated to useNavigate
 import axios from 'axios';
 
 // material-ui
@@ -37,7 +37,7 @@ async function handleRegister(data) {
 
 export default function Register() {
   const { isLoggedIn } = useAuth();
-  const history = useHistory();
+  const navigate = useNavigate(); // Updated to useNavigate
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ export default function Register() {
   };
 
   const handleLogoClick = () => {
-    history.push('/'); // Redirect to homepage on logo click
+    navigate('/'); // Updated to useNavigate for redirection
   };
 
   return (
