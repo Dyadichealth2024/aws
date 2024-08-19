@@ -58,7 +58,7 @@ export default function HeaderPage() {
                       lineHeight: 1.2
                     }}
                   >
-                    Explore Our Offerings and Improve your{' '}
+                    Improve relationships wellness through{' '}
                     <Typography
                       variant="h1"
                       component="span"
@@ -117,7 +117,7 @@ export default function HeaderPage() {
                       >
                         *
                       </Typography>
-                      Dyadic Health is the health of the relationship of two people in the Dyad (pair)
+                      Dyadic Health (DH) is the health of the relationship of two people in the Dyad (pair)
                     </Typography>
                   </motion.div>
                 </Grid>
@@ -139,9 +139,9 @@ export default function HeaderPage() {
                       name="knowledge-level"
                       onChange={handleRadioChange}
                     >
-                      <FormControlLabel value="combo" control={<Radio />} label="I don't know anything about DH, I would explore" />
-                      <FormControlLabel value="apps" control={<Radio />} label="I have some idea about DH and like to explore further" />
-                      <FormControlLabel value="technologies" control={<Radio />} label="I understand the DH concept well and want to train myself" />
+                      <FormControlLabel value="combo" control={<Radio />} label="Don't know much about DH, I like to understand better" />
+                      <FormControlLabel value="technologies" control={<Radio />} label="I have some idea about DH and like to explore further" />
+                      <FormControlLabel value="apps" control={<Radio />} label="I understand the DH concept well and want to train myself" />
                     </RadioGroup>
                   </FormControl>
                 </motion.div>
