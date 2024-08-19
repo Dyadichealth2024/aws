@@ -47,7 +47,7 @@ const BreathingExercise = () => {
 
     const calculateScore = async () => {
         try {
-            const response = await fetch('https://1j6t2rcyx4.execute-api.us-west-2.amazonaws.com/dev/calculate-lung-health', {
+            const response = await fetch('https://799jsa8t3k.execute-api.us-west-2.amazonaws.com/dev/calculate_lung_health', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const BreathingExercise = () => {
     return (
         <div style={styles.container}>
             <h2>Breathing Exercise</h2>
-            <p>If you feel uneasy at any time, please stop immediately.</p>
+            <p>If you feel uneasy at any time, please stop and catch your breath.</p>
 
             <div style={styles.inputGroup}>
                 <label>Age: </label>
