@@ -76,7 +76,7 @@ const BreathingExercise = () => {
     return (
         <div style={styles.container}>
             <h2>Breathing Exercise</h2>
-            <p>If you feel uneasy at any time, please stop immediately.</p>
+            <p>If you feel uneasy at any time, please stop and catch your breath.</p>
 
             <div style={styles.inputGroup}>
                 <label>Age: </label>

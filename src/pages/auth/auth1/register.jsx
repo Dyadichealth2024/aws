@@ -27,7 +27,7 @@ async function handleRegister(data) {
   try {
     const response = await axios.post('https://799jsa8t3k.execute-api.us-west-2.amazonaws.com/dev/register', data); // Replace with your API Gateway URL
     console.log(response.data);
-    alert('User registered successfully!');  // Display success message
+    alert('User registered successfully!'); 
   } catch (error) {
     console.error('Error registering user:', error);
     alert('Error registering user. Please try again.');  // Display error message
