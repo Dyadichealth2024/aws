@@ -24,7 +24,7 @@ const FooterBlock = ({ isFull }) => {
               }}
             >
               <img 
-                src="src/assets/images/logo.svg" 
+                src="/assets/images/logo.svg" 
                 alt="Phoenixcoded" 
                 style={{ 
                   width: '100%', 
