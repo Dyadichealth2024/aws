@@ -19,7 +19,7 @@ const FooterBlock = ({ isFull }) => {
             <Box 
               sx={{ 
                 width: 220,  // Set the width of the frame
-                height: 120, // Set the height of the frame
+                height: 120, 
                 overflow: 'hidden', // Ensure that the image doesn't overflow the frame
                 marginBottom: '10px' // Add some space below the image
               }}
