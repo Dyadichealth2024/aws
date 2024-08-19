@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Grid, Typography, TextField, Button, Box, Link, IconButton } from '@mui/material';
 import { Facebook, Instagram, Twitter, LinkedIn } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
+import logo from '../../assets/images/logo.svg';
 
 
 // ==============================|| CUSTOM STYLED FOOTER ||============================== //
@@ -17,14 +18,14 @@ const FooterBlock = ({ isFull }) => {
           <Grid item xs={12} sm={4}>
             <Box 
               sx={{ 
-                width: 120,  // Set the width of the frame
+                width: 220,  // Set the width of the frame
                 height: 120, // Set the height of the frame
                 overflow: 'hidden', // Ensure that the image doesn't overflow the frame
                 marginBottom: '10px' // Add some space below the image
               }}
             >
               <img 
-                src="/assets/images/logo.svg" 
+                src={logo} 
                 alt="Phoenixcoded" 
                 style={{ 
                   width: '100%', 
