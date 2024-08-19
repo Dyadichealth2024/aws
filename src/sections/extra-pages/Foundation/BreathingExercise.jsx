@@ -47,7 +47,7 @@ const BreathingExercise = () => {
 
     const calculateScore = async () => {
         try {
-            const response = await fetch('https://799jsa8t3k.execute-api.us-west-2.amazonaws.com/dev/calculate_lung_health', {
+            const response = await fetch('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/calculate_lung_health', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

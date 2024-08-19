@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 // material-ui
@@ -8,6 +8,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import LinearProgress from '@mui/material/LinearProgress';
+import Alert from '@mui/material/Alert';
 
 // project-imports
 import Logo from 'components/logo';
@@ -15,22 +17,23 @@ import useAuth from 'hooks/useAuth';
 import AuthSocButton from 'sections/auth/AuthSocButton';
 import AuthDivider from 'sections/auth/AuthDivider';
 import AuthWrapper from 'sections/auth/AuthWrapper';
-// Removed FirebaseRegister since we are implementing our own form
 
 // assets
 import imgFacebook from 'assets/images/auth/facebook.svg';
 import imgTwitter from 'assets/images/auth/twitter.svg';
 import imgGoogle from 'assets/images/auth/google.svg';
 
+// Password strength utility
+import { strengthColor, calculateStrength } from 'utils/password-strength';
+
 // Function to handle registration
 async function handleRegister(data) {
   try {
-    const response = await axios.post('https://799jsa8t3k.execute-api.us-west-2.amazonaws.com/dev/register', data); // Replace with your API Gateway URL
-    console.log(response.data);
-    alert('User registered successfully!'); 
+    const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', data); // Replace with your API Gateway URL
+    return { success: true, data: response.data };
   } catch (error) {
     console.error('Error registering user:', error);
-    alert('Error registering user. Please try again.');  // Display error message
+    return { success: false, error };
   }
 }
 
@@ -38,26 +41,47 @@ async function handleRegister(data) {
 
 export default function Register() {
   const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const [passwordStrength, setPasswordStrength] = useState({ label: '', color: '' });
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [registrationError, setRegistrationError] = useState('');
+
+  const handlePasswordChange = (e) => {
+    const strength = calculateStrength(e.target.value);
+    setPasswordStrength(strengthColor(strength));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      companyName: e.target.companyName.value,
+      companyName: e.target.companyName.value || "", // Make companyName optional
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    handleRegister(data);
+    const result = await handleRegister(data);
+    if (result.success) {
+      setRegistrationSuccess(true);
+      setRegistrationError('');
+    } else {
+      setRegistrationError('Error registering user. Please try again.');
+      setRegistrationSuccess(false);
+    }
+  };
+
+  const handleLogoClick = () => {
+    navigate('/'); // Navigate to homepage
   };
 
   return (
     <AuthWrapper>
       <Grid container spacing={3}>
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <Logo />
+          <Logo onClick={handleLogoClick} style={{ cursor: 'pointer' }} /> {/* Clickable logo */}
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={1}>
@@ -97,6 +121,16 @@ export default function Register() {
             </Typography>
           </Stack>
         </Grid>
+        {registrationSuccess && (
+          <Grid item xs={12}>
+            <Alert severity="success">User registered successfully!</Alert>
+          </Grid>
+        )}
+        {registrationError && (
+          <Grid item xs={12}>
+            <Alert severity="error">{registrationError}</Alert>
+          </Grid>
+        )}
         <Grid item xs={12}>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -107,13 +141,28 @@ export default function Register() {
                 <TextField label="Last Name" name="lastName" fullWidth required />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Company Name" name="companyName" fullWidth required />
+                <TextField label="Company Name" name="companyName" fullWidth /> {/* Optional field */}
               </Grid>
               <Grid item xs={12}>
                 <TextField label="Email" name="email" type="email" fullWidth required />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Password" name="password" type="password" fullWidth required />
+                <TextField
+                  label="Password"
+                  name="password"
+                  type="password"
+                  fullWidth
+                  required
+                  onChange={handlePasswordChange}
+                />
+                <LinearProgress
+                  variant="determinate"
+                  value={passwordStrength.color === 'error.main' ? 20 : passwordStrength.color === 'warning.main' ? 50 : 100}
+                  sx={{ mt: 1, bgcolor: 'lightgray' }}
+                />
+                <Typography variant="body2" color={passwordStrength.color} sx={{ mt: 1 }}>
+                  {passwordStrength.label}
+                </Typography>
               </Grid>
               <Grid item xs={12}>
                 <Button type="submit" variant="contained" color="primary" fullWidth>
