@@ -55,22 +55,7 @@ const FooterBlock = ({ isFull }) => {
               </Box>
               
               <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
-                <Link
-                  className="header-link"
-                  color="secondary.main"
-                  component={RouterLink}
-                  to="/Articles"
-                  underline="none"
-                >
-                  Articals
-                </Link>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <Typography variant="h4">Company</Typography>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
-                <Link
+              <Link
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
@@ -78,6 +63,21 @@ const FooterBlock = ({ isFull }) => {
                   underline="none"
                 >
                   contact us
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Typography variant="h4">Resources</Typography>
+              
+              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
+              <Link
+                  className="header-link"
+                  color="secondary.main"
+                  component={RouterLink}
+                  to="/Articles"
+                  underline="none"
+                >
+                  Articals
                 </Link>
               </Box>
               
@@ -94,7 +94,7 @@ const FooterBlock = ({ isFull }) => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="h4">Legal Resources</Typography>
+              <Typography variant="h4">Legal</Typography>
               <Link href="https://themeforest.net/page/item_support_policy" display="block" color="inherit" style={{ margin: '20px 0' }}>
                 Terms & Condition
               </Link>
