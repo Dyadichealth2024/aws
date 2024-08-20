@@ -15,7 +15,7 @@ export default function CEOInfo() {
         Sridhar Rao Nagulavancha, CEO
       </Typography>
       <Typography variant="body1" align="center">
-        Mr. Rao is the visionary behind our company, committed to making the world a better place.
+        Sridhar Nagulavancha is the founder and CEO of Dyadic Health. He has been building software for over 25 years. Prior to 2008, he worked in variety of software roles as a programmer, Dev ops and Software architect in Digital Commerce, AT&T, Freddie Mac and Software AG. He was involved in software services firm from 2009 to 2017. From 2018, he is involved in guiding startups and was active with triathlons and Iron man races.
       </Typography>
     </Box>
   );

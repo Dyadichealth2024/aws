@@ -9,7 +9,7 @@ export default function VisionSection() {
         Our Vision
       </Typography>
       <Typography variant="body1" align="center">
-        A vision for a better life.
+        Transforming humans to enjoy their time together with enormously renewed and balanced energy levels.
       </Typography>
     </Box>
   );

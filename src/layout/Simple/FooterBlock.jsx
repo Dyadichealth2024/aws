@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Grid, Typography, TextField, Button, Box, Link, IconButton } from '@mui/material';
-import { Facebook, Instagram, Twitter, LinkedIn } from '@mui/icons-material';
+import { Facebook, Instagram, Twitter, LinkedIn, YouTube } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 
@@ -55,22 +55,7 @@ const FooterBlock = ({ isFull }) => {
               </Box>
               
               <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
-                <Link
-                  className="header-link"
-                  color="secondary.main"
-                  component={RouterLink}
-                  to="/Articles"
-                  underline="none"
-                >
-                  Articals
-                </Link>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={2}>
-              <Typography variant="h4">Company</Typography>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
-                <Link
+              <Link
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
@@ -78,6 +63,21 @@ const FooterBlock = ({ isFull }) => {
                   underline="none"
                 >
                   contact us
+                </Link>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={2}>
+              <Typography variant="h4">Resources</Typography>
+              
+              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
+              <Link
+                  className="header-link"
+                  color="secondary.main"
+                  component={RouterLink}
+                  to="/Articles"
+                  underline="none"
+                >
+                  Articals
                 </Link>
               </Box>
               
@@ -94,7 +94,7 @@ const FooterBlock = ({ isFull }) => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={3}>
-              <Typography variant="h4">Legal Resources</Typography>
+              <Typography variant="h4">Legal</Typography>
               <Link href="https://themeforest.net/page/item_support_policy" display="block" color="inherit" style={{ margin: '20px 0' }}>
                 Terms & Condition
               </Link>
@@ -104,16 +104,16 @@ const FooterBlock = ({ isFull }) => {
             </Grid>
           </Grid>
           <Box mt={3} textAlign="center">
-            <IconButton href="https://www.facebook.com/Phoenixcoded/" aria-label="Facebook" target="_blank">
-              <Facebook />
+            <IconButton href="https://www.youtube.com/@sridharnagulavancha" aria-label="YouTube" target="_blank">
+              <YouTube />
             </IconButton>
-            <IconButton href="https://www.instagram.com/Phoenixcoded/" aria-label="Instagram" target="_blank">
+            <IconButton href="https://www.instagram.com/sridharnagulavancha" aria-label="Instagram" target="_blank">
               <Instagram />
             </IconButton>
             <IconButton href="https://twitter.com/phoenixcoded" aria-label="Twitter" target="_blank">
               <Twitter />
             </IconButton>
-            <IconButton href="https://in.linkedin.com/company/phoenixcoded" aria-label="LinkedIn" target="_blank">
+            <IconButton href="https://www.linkedin.com/in/sridharnagulavancha" aria-label="LinkedIn" target="_blank">
               <LinkedIn />
             </IconButton>
           </Box>

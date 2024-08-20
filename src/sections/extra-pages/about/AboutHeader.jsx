@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 // assets
 import AuthBackground from 'assets/images/auth/AuthBackground';
 
-// ==============================|| CONTACT US - HEADER ||============================== //
+// ==============================|| CONTACT US - HEADER ||============================= //
 
 export default function ContactHeader() {
   return (
@@ -17,10 +17,10 @@ export default function ContactHeader() {
         <Box sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, py: 6, mx: 'auto' }}>
           <Stack spacing={1}>
             <Typography align="center" variant="h2">
-              Learn About Us
+                Misson
             </Typography>
             <Typography align="center" color="text.secondary">
-              We are hear to guid you in the right path
+              Create 10 million healthy dyadic relationships by 2027 through easy to adopt habits and interventions.
             </Typography>
           </Stack>
         </Box>
