@@ -18,6 +18,7 @@ import useAuth from 'hooks/useAuth';
 import AuthSocButton from 'sections/auth/AuthSocButton';
 import AuthDivider from 'sections/auth/AuthDivider';
 import AuthWrapper from 'sections/auth/AuthWrapper';
+import FirebaseRegister from 'sections/auth/auth-forms/AuthRegister'; // Retain Firebase integration if needed
 
 // assets
 import imgFacebook from 'assets/images/auth/facebook.svg';
@@ -30,15 +31,13 @@ import { strengthColor, strengthIndicator } from 'utils/password-strength';
 // Function to handle registration
 async function handleRegister(data) {
   try {
-    const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', data); // Replace with your API Gateway URL
+    const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', data);
     return { success: true, data: response.data };
   } catch (error) {
     console.error('Error registering user:', error);
     return { success: false, error };
   }
 }
-
-// ================================|| REGISTER ||================================ //
 
 export default function Register() {
   const { isLoggedIn } = useAuth();
@@ -57,35 +56,41 @@ export default function Register() {
     const data = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      companyName: e.target.companyName.value || "", // Make companyName optional
+      companyName: e.target.companyName.value || "",
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    console.log("Submitting registration data:", data);
-
     const result = await handleRegister(data);
     if (result.success) {
-      console.log("Registration success:", result);
       toast.success('User registered successfully!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, // Close after 3 seconds
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
+
       setTimeout(() => {
-        console.log("Redirecting to login page...");
-        navigate('/login'); // Redirect to login page after the toast disappears
+        navigate('/login');
       }, 3000);
     } else {
-      console.log("Registration failed:", result);
       toast.error('Error registering user. Please try again.', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
     }
   };
 
   const handleLogoClick = () => {
-    navigate('/'); // Navigate to homepage
+    navigate('/'); 
   };
 
   return (
@@ -93,7 +98,7 @@ export default function Register() {
       <ToastContainer />
       <Grid container spacing={3}>
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-          <Logo onClick={handleLogoClick} style={{ cursor: 'pointer' }} /> {/* Clickable logo */}
+          <Logo onClick={handleLogoClick} style={{ cursor: 'pointer' }} />
         </Grid>
         <Grid item xs={12}>
           <Grid container spacing={1}>
@@ -104,12 +109,12 @@ export default function Register() {
             </Grid>
             <Grid item xs={12}>
               <AuthSocButton>
-                <img src={imgTwitter} alt="Facebook" style={{ margin: '0 10px' }} /> Sign In with Twitter
+                <img src={imgTwitter} alt="Twitter" style={{ margin: '0 10px' }} /> Sign In with Twitter
               </AuthSocButton>
             </Grid>
             <Grid item xs={12}>
               <AuthSocButton>
-                <img src={imgGoogle} alt="Facebook" style={{ margin: '0 10px' }} /> Sign In with Google
+                <img src={imgGoogle} alt="Google" style={{ margin: '0 10px' }} /> Sign In with Google
               </AuthSocButton>
             </Grid>
           </Grid>
@@ -134,6 +139,9 @@ export default function Register() {
           </Stack>
         </Grid>
         <Grid item xs={12}>
+          <FirebaseRegister /> {/* Keeping Firebase integration */}
+        </Grid>
+        <Grid item xs={12}>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -143,7 +151,7 @@ export default function Register() {
                 <TextField label="Last Name" name="lastName" fullWidth required />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Company Name" name="companyName" fullWidth /> {/* Optional field */}
+                <TextField label="Company Name" name="companyName" fullWidth />
               </Grid>
               <Grid item xs={12}>
                 <TextField label="Email" name="email" type="email" fullWidth required />
@@ -159,7 +167,11 @@ export default function Register() {
                 />
                 <LinearProgress
                   variant="determinate"
-                  value={passwordStrength.color === 'error.main' ? 20 : passwordStrength.color === 'warning.main' ? 50 : 100}
+                  value={passwordStrength.color === 'error.main' ? 20 :
+                         passwordStrength.color === 'warning.main' ? 40 :
+                         passwordStrength.color === 'warning.dark' ? 60 :
+                         passwordStrength.color === 'success.main' ? 80 :
+                         passwordStrength.color === 'success.dark' ? 100 : 0}
                   sx={{ mt: 1, bgcolor: 'lightgray' }}
                 />
                 <Typography variant="body2" color={passwordStrength.color} sx={{ mt: 1 }}>
