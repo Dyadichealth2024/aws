@@ -11,7 +11,7 @@ import useAuth from 'hooks/useAuth';
 import AnimateButton from 'components/@extended/AnimateButton';
 import AuthWrapper from 'sections/auth/AuthWrapper';
 
-// ================================|| CHECK MAIL ||================================ //
+// ================================|| CHECK MAIL ||=============================== //
 
 export default function CheckMail() {
   const { isLoggedIn } = useAuth();
