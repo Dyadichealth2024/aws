@@ -2,7 +2,8 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import SridharImage from '@/assets/images/aboutus/Sridhar-image-369x369.jpg';
+import SridharImage from '../../../assets/images/aboutus/Sridhar-image-369x369.jpg';
+;
 
 export default function CEOInfo() {
   return (
