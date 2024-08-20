@@ -8,7 +8,7 @@ export default function CEOInfo() {
     <Box sx={{ my: 4, py: 4, textAlign: 'center' }}>
       <Avatar
         alt="CEO"
-        src="src/assets/images/aboutus/Sridhar-image-369x369.png" // Update the path to the actual image
+        src="src/assets/images/aboutus/Sridhar-image-369x369.jpg" // Update the path to the actual image
         sx={{ width: 120, height: 120, margin: 'auto' }}
       />
       <Typography variant="h5" align="center" gutterBottom>
