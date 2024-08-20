@@ -88,28 +88,7 @@ const Technologies = [
     preview:
       ispValue !== null && parseInt(ispValue) === 1 ? 'https://able-pro.azurewebsites.net/?isp=1' : 'https://able-pro.azurewebsites.net/',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
-  },
-  // {
-  //   trending: false,
-  //   icon: techCodeigniter,
-  //   title: 'CodeIgniter',
-  //   description:
-  //     'Able Pro CodeIgniter version is a powerful dashboard template built specifically for developers who use the CodeIgniter PHP framework.',
-  //   preview:
-  //     ispValue !== null && parseInt(ispValue) === 1
-  //       ? 'https://ableproadmin.com/codeigniter/default/public/?isp=1'
-  //       : 'https://ableproadmin.com/codeigniter/default/public/ ',
-  //   free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
-  // },
-  // {
-  //   trending: false,
-  //   icon: techFigma,
-  //   title: 'Figma',
-  //   description:
-  //     'Able Pro comes with a Figma design file that allows you to customize and fine-tune your dashboard to meet your specific needs.',
-  //   preview: 'https://www.figma.com/file/6XqmRhRmkr33w0EFD49acY/Able-Pro--v9.0-Figma-Preview?type=design&mode=design&t=4FS2Lw6WxsmJ3RLm-0',
-  //   free: null
-  // }
+  }
 ];
 
 // ==============================|| LANDING - TechnologiesPage ||============================== //

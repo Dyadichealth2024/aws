@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Grid, Typography, TextField, Button, Box, Link, IconButton } from '@mui/material';
-import { Facebook, Instagram, Twitter, LinkedIn } from '@mui/icons-material';
+import { Facebook, Instagram, Twitter, LinkedIn, YouTube } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 
@@ -104,16 +104,16 @@ const FooterBlock = ({ isFull }) => {
             </Grid>
           </Grid>
           <Box mt={3} textAlign="center">
-            <IconButton href="https://www.facebook.com/Phoenixcoded/" aria-label="Facebook" target="_blank">
-              <Facebook />
+            <IconButton href="https://www.youtube.com/@sridharnagulavancha" aria-label="YouTube" target="_blank">
+              <YouTube />
             </IconButton>
-            <IconButton href="https://www.instagram.com/Phoenixcoded/" aria-label="Instagram" target="_blank">
+            <IconButton href="https://www.instagram.com/sridharnagulavancha" aria-label="Instagram" target="_blank">
               <Instagram />
             </IconButton>
             <IconButton href="https://twitter.com/phoenixcoded" aria-label="Twitter" target="_blank">
               <Twitter />
             </IconButton>
-            <IconButton href="https://in.linkedin.com/company/phoenixcoded" aria-label="LinkedIn" target="_blank">
+            <IconButton href="https://www.linkedin.com/in/sridharnagulavancha" aria-label="LinkedIn" target="_blank">
               <LinkedIn />
             </IconButton>
           </Box>

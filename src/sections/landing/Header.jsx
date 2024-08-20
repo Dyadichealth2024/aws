@@ -110,7 +110,7 @@ export default function HeaderPage() {
                       <Typography
                         component="sup" // This will make the star superscript
                         sx={{
-                          fontSize: '0.7em', 
+                          fontSize: '0.7em',  
                           verticalAlign: 'super', // Align it as a superscript
                           color: 'inherit', // Ensure it inherits the color from the parent
                         }}
