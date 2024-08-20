@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // material-ui
 import Grid from '@mui/material/Grid';
@@ -9,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
-import Alert from '@mui/material/Alert';
 
 // project-imports
 import Logo from 'components/logo';
@@ -24,7 +25,7 @@ import imgTwitter from 'assets/images/auth/twitter.svg';
 import imgGoogle from 'assets/images/auth/google.svg';
 
 // Password strength utility
-import { strengthColor, calculateStrength } from 'utils/password-strength';
+import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // Function to handle registration
 async function handleRegister(data) {
@@ -44,11 +45,9 @@ export default function Register() {
   const navigate = useNavigate();
 
   const [passwordStrength, setPasswordStrength] = useState({ label: '', color: '' });
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [registrationError, setRegistrationError] = useState('');
 
   const handlePasswordChange = (e) => {
-    const strength = calculateStrength(e.target.value);
+    const strength = strengthIndicator(e.target.value);
     setPasswordStrength(strengthColor(strength));
   };
 
@@ -63,13 +62,25 @@ export default function Register() {
       password: e.target.password.value,
     };
 
+    console.log("Submitting registration data:", data);
+
     const result = await handleRegister(data);
     if (result.success) {
-      setRegistrationSuccess(true);
-      setRegistrationError('');
+      console.log("Registration success:", result);
+      toast.success('User registered successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Close after 3 seconds
+      });
+      setTimeout(() => {
+        console.log("Redirecting to login page...");
+        navigate('/login'); // Redirect to login page after the toast disappears
+      }, 3000);
     } else {
-      setRegistrationError('Error registering user. Please try again.');
-      setRegistrationSuccess(false);
+      console.log("Registration failed:", result);
+      toast.error('Error registering user. Please try again.', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
     }
   };
 
@@ -79,6 +90,7 @@ export default function Register() {
 
   return (
     <AuthWrapper>
+      <ToastContainer />
       <Grid container spacing={3}>
         <Grid item xs={12} sx={{ textAlign: 'center' }}>
           <Logo onClick={handleLogoClick} style={{ cursor: 'pointer' }} /> {/* Clickable logo */}
@@ -121,16 +133,6 @@ export default function Register() {
             </Typography>
           </Stack>
         </Grid>
-        {registrationSuccess && (
-          <Grid item xs={12}>
-            <Alert severity="success">User registered successfully!</Alert>
-          </Grid>
-        )}
-        {registrationError && (
-          <Grid item xs={12}>
-            <Alert severity="error">{registrationError}</Alert>
-          </Grid>
-        )}
         <Grid item xs={12}>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
