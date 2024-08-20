@@ -26,12 +26,12 @@ import imgTwitter from 'assets/images/auth/twitter.svg';
 import imgGoogle from 'assets/images/auth/google.svg';
 
 // Password strength utility
-import { strengthColor, calculateStrength } from 'utils/password-strength';
+import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // Function to handle registration
 async function handleRegister(data) {
   try {
-    const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', data); 
+    const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', data);
     return { success: true, data: response.data };
   } catch (error) {
     console.error('Error registering user:', error);
@@ -46,7 +46,7 @@ export default function Register() {
   const [passwordStrength, setPasswordStrength] = useState({ label: '', color: '' });
 
   const handlePasswordChange = (e) => {
-    const strength = calculateStrength(e.target.value);
+    const strength = strengthIndicator(e.target.value);
     setPasswordStrength(strengthColor(strength));
   };
 
@@ -56,7 +56,7 @@ export default function Register() {
     const data = {
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
-      companyName: e.target.companyName.value || "", 
+      companyName: e.target.companyName.value || "",
       email: e.target.email.value,
       password: e.target.password.value,
     };
@@ -65,7 +65,7 @@ export default function Register() {
     if (result.success) {
       toast.success('User registered successfully!', {
         position: 'top-right',
-        autoClose: 3000, 
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -151,7 +151,7 @@ export default function Register() {
                 <TextField label="Last Name" name="lastName" fullWidth required />
               </Grid>
               <Grid item xs={12}>
-                <TextField label="Company Name" name="companyName" fullWidth /> 
+                <TextField label="Company Name" name="companyName" fullWidth />
               </Grid>
               <Grid item xs={12}>
                 <TextField label="Email" name="email" type="email" fullWidth required />
@@ -167,7 +167,11 @@ export default function Register() {
                 />
                 <LinearProgress
                   variant="determinate"
-                  value={passwordStrength.color === 'error.main' ? 20 : passwordStrength.color === 'warning.main' ? 50 : 100}
+                  value={passwordStrength.color === 'error.main' ? 20 :
+                         passwordStrength.color === 'warning.main' ? 40 :
+                         passwordStrength.color === 'warning.dark' ? 60 :
+                         passwordStrength.color === 'success.main' ? 80 :
+                         passwordStrength.color === 'success.dark' ? 100 : 0}
                   sx={{ mt: 1, bgcolor: 'lightgray' }}
                 />
                 <Typography variant="body2" color={passwordStrength.color} sx={{ mt: 1 }}>
