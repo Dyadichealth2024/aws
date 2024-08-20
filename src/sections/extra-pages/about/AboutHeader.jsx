@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 // assets
 import AuthBackground from 'assets/images/auth/AuthBackground';
 
-// ==============================|| CONTACT US - HEADER ||============================== //
+// ==============================|| CONTACT US - HEADER ||============================= //
 
 export default function ContactHeader() {
   return (
