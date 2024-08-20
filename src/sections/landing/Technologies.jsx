@@ -38,24 +38,23 @@ const Technologies = [
     trending: false,
     icon: techBootstrap,
     title: 'Breathing',
-    description: "Clear and complet steps for correcting yout respiratory system",
+    description: "Emotional Regulation through improvement of breathing patterns & respiratory health",
     preview: ispValue !== null && parseInt(ispValue) === 1 ? 'https://ableproadmin.com?isp=1' : 'https://ableproadmin.com',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
   },
   {
     trending: true,
     icon: techMui,
-    title: 'React Material-UI',
-    description:
-      'Able Pro React dashboard template is a powerful tool that utilizes the Material-UI component library to create stunning and intuitive user interfaces.',
+    title: 'Posture',
+    description:'Quality interactions within Dyads through improvement of energy and emotional aspects',
     preview: ispValue !== null && parseInt(ispValue) === 1 ? 'https://ableproadmin.com/react/?isp=1' : 'https://ableproadmin.com/react/',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
   },
   {
     trending: false,
     icon: techAngular,
-    title: 'Angular',
-    description: "Able Pro - Boost your project's visual appeal and functionality with our Angular dashboard template.",
+    title: 'Workouts',
+    description: "Strengthen dyadic relationships by promoting shared activities and mutual support.",
     preview:
       ispValue !== null && parseInt(ispValue) === 1
         ? 'https://ableproadmin.com/angular/default/?isp=1'
@@ -65,17 +64,16 @@ const Technologies = [
   {
     trending: false,
     icon: techVue,
-    title: 'Vue',
-    description: "Able Pro - Boost your project's visual appeal and functionality with our Vue Dashboard template.",
+    title: 'Diet',
+    description: "Nutrient-rich foods reduce stress and increase emotional stability, leading to fewer conflicts.",
     preview: ispValue !== null && parseInt(ispValue) === 1 ? 'https://ableproadmin.com/vue/?isp=1' : 'https://ableproadmin.com/vue/',
     free: null
   },
   {
     trending: false,
     icon: techNextJS,
-    title: 'Next Js',
-    description:
-      'Able Pro Next Js dashboard template is a powerful tool that utilizes the Material-UI component library to create stunning and intuitive user interfaces.',
+    title: 'Recovery',
+    description:'Enhance dyadic relationships by promoting shared relaxation and recovery activities.',
     preview:
       ispValue !== null && parseInt(ispValue) === 1
         ? 'https://able-pro-material-next-ts-navy.vercel.app/?isp=1'
@@ -85,9 +83,8 @@ const Technologies = [
   {
     trending: false,
     icon: techNet,
-    title: 'Asp.net',
-    description:
-      'Able Pro .NET version is a robust dashboard template designed specifically for .NET developers. Its comes with a wide range of pre-built components.',
+    title: 'Whole Health',
+    description:'Blending the physical health of a self into the realm of dyadic relationships',
     preview:
       ispValue !== null && parseInt(ispValue) === 1 ? 'https://able-pro.azurewebsites.net/?isp=1' : 'https://able-pro.azurewebsites.net/',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
