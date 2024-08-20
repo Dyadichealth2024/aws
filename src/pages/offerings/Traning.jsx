@@ -1,30 +1,25 @@
-// material-ui
+import React from 'react';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 // project imports
 import Traningheader from 'sections/extra-pages/Traning/Traningheader';
-//import VisionSection from 'sections/extra-pages/about/VisionSection';
-//import CEOInfo from 'sections/extra-pages/about/CEOInfo';
+import Traningrelation from 'sections/extra-pages/Traning/Traningrelation';
 
-// ==============================|| ABOUT US - MAIN ||============================== //
+// ==============================|| training page ||============================== //
 
 export default function Traning() {
   return (
-    <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ mb: 12 }}>
-      <Grid item xs={12}>
-        <Traningheader />
+    <Container sx={{ mb: 12 }}>
+      <Grid container spacing={4} justifyContent="center" alignItems="center">
+        <Grid item xs={12}>
+          <Traningheader />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Traningrelation />
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={10} lg={9}>
-        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
-          {/* <VisionSection /> */}
-        </Container>
-      </Grid>
-      <Grid item xs={12} sm={10} lg={9}>
-        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
-          {/* <CEOInfo /> */}
-        </Container>
-      </Grid>
-    </Grid>
+    </Container>
   );
 }
