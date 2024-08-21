@@ -1,28 +1,32 @@
-import React, { useRef } from 'react';
-import styled from 'styled-components';
+import React, { useState, useRef } from 'react';
 import Grid from '@mui/material/Grid';
-import AuthBackground from 'assets/images/auth/AuthBackground';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-// Sample data
+import styled from 'styled-components';
+import MainCard from 'components/MainCard';  // Keep the imported MainCard here
+import { useNavigate } from 'react-router-dom';
+import Artical1 from "../assets/images/articles/article1.png";
+import Artical2 from "../assets/images/articles/article2.png";
+// Sample articles data using the uploaded image
 const articles = [
-  { title: "The Role Of Dyadic Health In Parenting", imgSrc: "src/assets/images/articles/image1.png" },
-  { title: "The Role of Dyadic Health in Overall Wellbeing", imgSrc: "src/assets/images/articles/image2.jpg" },
-  { title: "Dyadic Health In Romantic Relationships", imgSrc: "src/assets/images/articles/image3.png" },
-  { title: "The Role Of Dyadic Health In Parenting", imgSrc: "src/assets/images/articles/image4.png" },
-  { title: "Dyadic Health In Spousal Relationships", imgSrc: "src/assets/images/articles/image5.jpg" },
+  {
+    imgSrc: Artical1, 
+    content: "Content for article on Dyadic Health...",
+  },
+  {
+    imgSrc: Artical2, 
+    content: "Content for article on Dyadic Health...",
+  },
   // ... add more articles as needed
 ];
 
 const ArticleContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 16px;
+  gap: 10px;
   overflow-x: auto;
-  padding: 20px 0; // Adjusted padding
+  padding: 20px 0;
   scroll-behavior: smooth;
   position: relative;
   &::-webkit-scrollbar {
@@ -30,86 +34,111 @@ const ArticleContainer = styled.div`
   }
 `;
 
+const StyledMainCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  background-color: #80b3ff; /* Previous light blue color */
+  border-radius: 12px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+`;
+
 const ArticleCard = styled.div`
-  min-width: 300px;
+  min-width: 100px;
+  height: 100%;
   background: ${props => props.bgColor || '#fff'};
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   overflow: hidden;
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* Align items to the top */
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const ArticleTitle = styled(Typography)`
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0; /* Remove margin */
+  padding: 10px; /* Add padding to control spacing */
+  background-color: ${props => props.bgColor || 'inherit'};
+  width: 100%; /* Ensure the title takes full width */
 `;
 
 const ArticleImage = styled.img`
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: auto;
+  object-fit: cover; /* Cover ensures the image fully fills its container */
+  margin: 0; /* Remove any margin */
+  padding: 0; /* Remove any padding */
+  flex-grow: 1; /* Allow the image to take up the remaining space */
 `;
 
-const ArticleTitle = styled.div`
-  background-color: #a5d8ff;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: 500;
-`;
+export default function ComboPage() {
+  const [selectedContent, setSelectedContent] = useState(articles[0]);
 
-const ScrollButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10; // Ensure the button is on top of other elements
-  &:hover {
-    background: rgba(0, 0, 0, 0.7);
-  }
-`;
-
-const ScrollLeftButton = styled(ScrollButton)`
-  left: 30px; // Ensure the button is outside of the content area
-`;
-
-const ScrollRightButton = styled(ScrollButton)`
-  right: 10px; // Ensure the button is outside of the content area
-`;
-
-const Articles = () => {
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
-  const scrollLeft = () => {
-    containerRef.current.scrollBy({
-      left: -300, // Adjust scroll distance here
-      behavior: 'smooth',
-    });
+  const handleArticleSelect = (article) => {
+    setSelectedContent(article);
   };
 
-  const scrollRight = () => {
-    containerRef.current.scrollBy({
-      left: 300, // Adjust scroll distance here
-      behavior: 'smooth',
-    });
+  const containerStyle = {
+    height: '10cm',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (
-    <div>
-      <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ mb: 12 }}>
-        <Grid item xs={12} style={{ position: 'relative' }}>
-          <ScrollLeftButton onClick={scrollLeft}>{'<'}</ScrollLeftButton>
-          <ArticleContainer ref={containerRef}>
-            {articles.map((article, index) => (
-              <ArticleCard key={index} bgColor={article.bgColor}>
-                <ArticleImage src={article.imgSrc} alt={article.title} />
-                <ArticleTitle>{article.title}</ArticleTitle>
-              </ArticleCard>
-            ))}
-          </ArticleContainer>
-          <ScrollRightButton onClick={scrollRight}>{'>'}</ScrollRightButton>
+    <Box sx={{ backgroundColor: '#ffffff', minHeight: '70vh', padding: 3 }}>
+      <Container>
+        <Box sx={{ marginBottom: 5, marginTop: 2 }}>
+          <Typography variant="h4" align="center" gutterBottom>
+            Article Gallery
+          </Typography>
+        </Box>
+        <Grid container spacing={3} alignItems="center" justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <StyledMainCard style={containerStyle}>
+              <ArticleContainer ref={containerRef}>
+                {articles.map((article, index) => (
+                  <ArticleCard key={index} onClick={() => handleArticleSelect(article)}>
+                    <ArticleTitle variant="h6" bgColor="#80b3ff">
+                      {article.title}
+                    </ArticleTitle>
+                    <ArticleImage src={article.imgSrc} alt={article.title} />
+                  </ArticleCard>
+                ))}
+              </ArticleContainer>
+            </StyledMainCard>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <StyledMainCard style={containerStyle}>
+              <Typography variant="h5" gutterBottom>
+                {selectedContent.title}
+              </Typography>
+              <Typography variant="body1">
+                {selectedContent.content}
+              </Typography>
+            </StyledMainCard>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </Container>
+    </Box>
   );
-};
+}
 
-export default Articles;

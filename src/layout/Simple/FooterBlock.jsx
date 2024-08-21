@@ -50,7 +50,7 @@ const FooterBlock = ({ isFull }) => {
                   to="/about-us"
                   underline="none"
                 >
-                  About
+                  About Us
                 </Link>
               </Box>
               
@@ -62,7 +62,7 @@ const FooterBlock = ({ isFull }) => {
                   to="/contact-us"
                   underline="none"
                 >
-                  contact us
+                  Contact Us
                 </Link>
               </Box>
             </Grid>
@@ -77,7 +77,7 @@ const FooterBlock = ({ isFull }) => {
                   to="/Articles"
                   underline="none"
                 >
-                  Articals
+                  Articles
                 </Link>
               </Box>
               
@@ -86,21 +86,39 @@ const FooterBlock = ({ isFull }) => {
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
-                  to="/"
+                  to="/course"
                   underline="none"
                 >
-                  support
+                  Videos
                 </Link>
               </Box>
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={2}>
               <Typography variant="h4">Legal</Typography>
-              <Link href="https://themeforest.net/page/item_support_policy" display="block" color="inherit" style={{ margin: '20px 0' }}>
-                Terms & Condition
-              </Link>
-              <Link href="https://themeforest.net/licenses/standard" display="block" color="inherit" style={{ margin: '20px 0' }}>
-                Privacy Policy
-              </Link>
+              
+              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
+                <Link
+                  className="header-link"
+                  color="secondary.main"
+                  component={RouterLink}
+                  to="/about-us"
+                  underline="none"
+                >
+                  Terms & Conditions
+                </Link>
+              </Box>
+              
+              <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
+              <Link
+                  className="header-link"
+                  color="secondary.main"
+                  component={RouterLink}
+                  to="/contact-us"
+                  underline="none"
+                >
+                  Privacy Policy
+                </Link>
+              </Box>
             </Grid>
           </Grid>
           <Box mt={3} textAlign="center">

@@ -14,7 +14,7 @@ export default function LogoMain() {
       <img
         src={theme.palette.mode === 'dark' ? logoDark : logo}
         alt="icon logo"
-        width="60"
+        width="200"
       />
     </>
   );

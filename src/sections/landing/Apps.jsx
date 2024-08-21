@@ -93,7 +93,7 @@ const Technologies = [
   {
     title: 'Dyadic Health',
     category: 'parenting',
-    description: 'Dyadic Health being the healh of those in dyadic relationship - a relationship of a dyad(pair) - Engage in activities that are fundamental to any dyadic relationship and make yourself robust for any dyadic relationship.'
+    description: 'Dyadic Health is the health of those in a dyadic relationship Engaging in activities that improve primarily interconnectedness dependencies'
   },
   {
     title: 'Spousal Dyad',
@@ -153,12 +153,12 @@ export default function AppsPage() {
             <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', marginBottom: 3 }}>
               <Grid item xs={12}>
                 <Typography variant="h2" color="white">
-                  Interactive Chatbot
+                  Dyadic Health Improvement Training
                 </Typography>
               </Grid>
               <Grid item xs={12} md={7}>
                 <Typography color="white">
-                  Engage with our chatbot by selecting a category and choosing questions to get responses!
+                  Engaging in activities that help enhace the Health of a Dyadic Relationship
                 </Typography>
               </Grid>
             </Grid>
