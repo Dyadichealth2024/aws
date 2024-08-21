@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import logoDark from 'assets/images/logo-dark.svg';
 import logo from 'assets/images/logo.svg';
 
-// ==============================|| LOGO SVG ||============================== //
+// ==============================|| LOGO SVG ||============================= //
 
 export default function LogoMain() {
   const theme = useTheme();
@@ -14,7 +14,7 @@ export default function LogoMain() {
       <img
         src={theme.palette.mode === 'dark' ? logoDark : logo}
         alt="icon logo"
-        width="60"
+        width="200"
       />
     </>
   );

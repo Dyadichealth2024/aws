@@ -117,7 +117,7 @@ export default function HeaderPage() {
                       >
                         *
                       </Typography>
-                      Dyadic Health (DH) is the health of the relationship of two people in the Dyad (pair)
+                        Dyadic Health (DH) is the health of the relationship of two people in the Dyad (A pair)
                     </Typography>
                   </motion.div>
                 </Grid>
