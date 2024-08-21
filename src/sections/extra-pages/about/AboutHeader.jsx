@@ -17,10 +17,10 @@ export default function ContactHeader() {
         <Box sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, py: 6, mx: 'auto' }}>
           <Stack spacing={1}>
             <Typography align="center" variant="h2">
-                Misson
+              Our Vision
             </Typography>
             <Typography align="center" color="text.secondary">
-              Create 10 million healthy dyadic relationships by 2027 through easy to adopt habits and interventions.
+              Transforming humans to enjoy their time together with enormously renewed and balanced energy levels.
             </Typography>
           </Stack>
         </Box>

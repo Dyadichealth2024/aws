@@ -6,10 +6,10 @@ export default function VisionSection() {
   return (
     <Box sx={{ my: 4, py: 4 }}>
       <Typography variant="h4" align="center" gutterBottom>
-        Our Vision
+        Misson
       </Typography>
       <Typography variant="body1" align="center">
-        Transforming humans to enjoy their time together with enormously renewed and balanced energy levels.
+      Create 10 million healthy dyadic relationships by 2027 through easy to adopt habits and interventions.
       </Typography>
     </Box>
   );

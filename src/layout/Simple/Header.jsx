@@ -223,11 +223,7 @@ export default function Header({ layout = 'landing', ...others }) {
                     Dashboard
                   </Button>
                 )}
-                {layout !== 'component' && (
-                  <Button variant="outlined" color="warning" component={RouterLink} to="/components-overview/buttons" sx={{ mt: 0.25 }}>
-                    All Components
-                  </Button>
-                )}
+                
 
                 <IconButton
                   size="large"
