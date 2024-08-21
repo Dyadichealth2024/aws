@@ -18,7 +18,7 @@ export default function AuthFooter() {
         textAlign={matchDownSM ? 'center' : 'inherit'}
       >
         <Typography variant="subtitle2" color="secondary">
-          Able Pro ♥ crafted by Team{' '}
+          Dyadic health{' '}
           <Typography
             component={Link}
             variant="subtitle2"
