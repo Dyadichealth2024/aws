@@ -1,108 +1,110 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Grid from '@mui/material/Grid';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 
-export default function VideoGallery() {
-  const location = useLocation();
-  const navigate = useNavigate();
+// import React, { useState, useEffect } from 'react';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import Grid from '@mui/material/Grid';
+// import CardMedia from '@mui/material/CardMedia';
+// import Typography from '@mui/material/Typography';
+// import Container from '@mui/material/Container';
+// import Box from '@mui/material/Box';
+// import Stack from '@mui/material/Stack';
 
-  // Destructure and provide default values to avoid undefined issues
-  const { videoList = [], videosPlayed = [] } = location.state || {};
+// export default function VideoGallery() {
+//   const location = useLocation();
+//   const navigate = useNavigate();
 
-  // Handle case where videoList is empty
-  useEffect(() => {
-    if (videoList.length === 0) {
-      navigate('/combo');  // Navigate back to combo page if videoList is empty
-    }
-  }, [location, navigate, videoList.length]);
+//   // Destructure and provide default values to avoid undefined issues
+//   const { videoList = [], videosPlayed = [] } = location.state || {};
 
-  // Default to the first video, if available
-  const [currentVideo, setCurrentVideo] = useState(videoList[0]?.id || '');
-  const [viewedVideos, setViewedVideos] = useState(videosPlayed);
+//   // Handle case where videoList is empty
+//   useEffect(() => {
+//     if (videoList.length === 0) {
+//       navigate('/course');  // Navigate back to combo page if videoList is empty
+//     }
+//   }, [location, navigate, videoList.length]);
 
-  const handleVideoEnd = () => {
-    if (currentVideo && !viewedVideos.includes(currentVideo)) {
-      setViewedVideos([...viewedVideos, currentVideo]);
-    }
-  };
+//   // Default to the first video, if available
+//   const [currentVideo, setCurrentVideo] = useState(videoList[0]?.id || '');
+//   const [viewedVideos, setViewedVideos] = useState(videosPlayed);
 
-  const handleVideoSelect = (videoId) => {
-    setCurrentVideo(videoId);
-  };
+//   const handleVideoEnd = () => {
+//     if (currentVideo && !viewedVideos.includes(currentVideo)) {
+//       setViewedVideos([...viewedVideos, currentVideo]);
+//     }
+//   };
 
-  const videoContainerStyle = {
-    height: '500px',
-    position: 'relative',
-    width: '100%',
-  };
+//   const handleVideoSelect = (videoId) => {
+//     setCurrentVideo(videoId);
+//   };
 
-  const ribbonStyle = {
-    maxHeight: '500px',
-    overflowY: 'auto',
-    backgroundColor: '#f7f7f7',
-    padding: '10px',
-  };
+//   const videoContainerStyle = {
+//     height: '500px',
+//     position: 'relative',
+//     width: '100%',
+//   };
 
-  return (
-    <Container>
-      {videoList.length > 0 ? (
-        <Grid container spacing={2}>
-          <Grid item xs={9}>
-            <Box style={videoContainerStyle}>
-              <Box
-                component="iframe"
-                src={`https://www.youtube.com/embed/${currentVideo}`}
-                style={{ width: '100%', height: '100%' }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                onEnded={handleVideoEnd}
-              />
-            </Box>
-          </Grid>
-          <Grid item xs={3} style={ribbonStyle}>
-            <Typography variant="h6" gutterBottom>
-              Course Videos
-            </Typography>
-            <Stack spacing={2}>
-              {videoList.map((video) => (
-                <Box
-                  key={video.id}
-                  onClick={() => handleVideoSelect(video.id)}
-                  style={{
-                    cursor: 'pointer',
-                    backgroundColor: viewedVideos.includes(video.id) ? '#d1e7dd' : '#fff',
-                    padding: '10px',
-                    borderRadius: '8px',
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={video.thumbnail}
-                    sx={{ width: '100%', height: 'auto' }}
-                  />
-                  <Typography variant="body2" align="center">
-                    {video.title}
-                  </Typography>
-                  {viewedVideos.includes(video.id) && (
-                    <Typography variant="caption" color="success.main" align="center">
-                      Viewed
-                    </Typography>
-                  )}
-                </Box>
-              ))}
-            </Stack>
-          </Grid>
-        </Grid>
-      ) : (
-        <Typography variant="h6" align="center" gutterBottom>
-          No videos available.
-        </Typography>
-      )}
-    </Container>
-  );
-}
+//   const ribbonStyle = {
+//     maxHeight: '500px',
+//     overflowY: 'auto',
+//     backgroundColor: '#f7f7f7',
+//     padding: '10px',
+//   };
+
+//   return (
+//     <Container>
+//       {videoList.length > 0 ? (
+//         <Grid container spacing={2}>
+//           <Grid item xs={9}>
+//             <Box style={videoContainerStyle}>
+//               <Box
+//                 component="iframe"
+//                 src={`https://www.youtube.com/embed/${currentVideo}`}
+//                 style={{ width: '100%', height: '100%' }}
+//                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//                 allowFullScreen
+//                 onEnded={handleVideoEnd}
+//               />
+//             </Box>
+//           </Grid>
+//           <Grid item xs={3} style={ribbonStyle}>
+//             <Typography variant="h6" gutterBottom>
+//               Course Videos
+//             </Typography>
+//             <Stack spacing={2}>
+//               {videoList.map((video) => (
+//                 <Box
+//                   key={video.id}
+//                   onClick={() => handleVideoSelect(video.id)}
+//                   style={{
+//                     cursor: 'pointer',
+//                     backgroundColor: viewedVideos.includes(video.id) ? '#d1e7dd' : '#fff',
+//                     padding: '10px',
+//                     borderRadius: '8px',
+//                   }}
+//                 >
+//                   <CardMedia
+//                     component="img"
+//                     image={video.thumbnail}
+//                     sx={{ width: '100%', height: 'auto' }}
+//                   />
+//                   <Typography variant="body2" align="center">
+//                     {video.title}
+//                   </Typography>
+//                   {viewedVideos.includes(video.id) && (
+//                     <Typography variant="caption" color="success.main" align="center">
+//                       Viewed
+//                     </Typography>
+//                   )}
+//                 </Box>
+//               ))}
+//             </Stack>
+//           </Grid>
+//         </Grid>
+//       ) : (
+//         <Typography variant="h6" align="center" gutterBottom>
+//           No videos available.
+//         </Typography>
+//       )}
+//     </Container>
+//   );
+// }
+// //

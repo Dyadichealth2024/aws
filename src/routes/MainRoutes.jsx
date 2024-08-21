@@ -137,8 +137,9 @@ const Articles = Loadable(lazy(() => import('pages/offerings/Articles'))); // Ad
 const Resources = Loadable(lazy(() => import('pages/offerings/Resources')));
 const Foundation = Loadable(lazy(() => import('pages/offerings/Foundation')));
 const Traning = Loadable(lazy(() => import('pages/offerings/Traning')));
-const VideoGallery = Loadable(lazy(() => import('../sections/landing/VideoGallery')));
+const Video = Loadable(lazy(() => import('pages/video')));
 const Combo = Loadable(lazy(() => import('../sections/landing/Combo')));
+
 
 
 // ==============================|| MAIN ROUTES ||============================== //
@@ -168,9 +169,10 @@ const MainRoutes = {
           element: <Combo />
         },
         {
-          path: 'video-gallery',
-          element: <VideoGallery />
+          path: 'course',
+          element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
         },
+        
         {
           path: 'widget',
           children: [
@@ -581,6 +583,7 @@ const MainRoutes = {
           path: 'traning', // Add this line
           element: <Traning /> // Add this line
         },
+        
       ]
     },
     {

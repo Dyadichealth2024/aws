@@ -86,10 +86,10 @@ const FooterBlock = ({ isFull }) => {
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
-                  to="/"
+                  to="/course"
                   underline="none"
                 >
-                  support
+                  Videos
                 </Link>
               </Box>
             </Grid>
