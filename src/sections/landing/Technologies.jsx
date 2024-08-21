@@ -154,7 +154,7 @@ export default function TechnologiesPage() {
                     delay: 0.2
                   }}
                 >
-                  <Typography variant="h2" sx={{ fontWeight: 'bold', color: '#37474f' }}>Steps to a Better Feature</Typography>
+                  <Typography variant="h2" sx={{ fontWeight: 'bold', color: '#37474f' }}>Strengthen Your Personal Foundation</Typography>
                 </motion.div>
               </Grid>
               <Grid item xs={12}>
@@ -168,7 +168,7 @@ export default function TechnologiesPage() {
                     delay: 0.4
                   }}
                 >
-                  <Typography sx={{ color: '#607d8b' }}>Explore the Demos of Able Pro in multiple technologies.</Typography>
+                  <Typography sx={{ color: '#607d8b' }}>Activities that help strengthen the personal foundation in Dyadic Health</Typography>
                 </motion.div>
               </Grid>
               <Grid item xs={12}>
