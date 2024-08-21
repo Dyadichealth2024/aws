@@ -13,102 +13,34 @@ import ChatIcon from '@mui/icons-material/Chat';
 // project-imports
 import FadeInWhenVisible from './Animation';
 
-// Questions and predefined responses for each category
-const QUESTIONS = {
-  parenting: [
-    {
-      question: "How do you approach discipline with your child?",
-      response: "Discipline is essential, and consistency is key. It's important to balance firmness with understanding."
-    },
-    {
-      question: "What are the key values you want to instill in your child?",
-      response: "Values like honesty, respect, and empathy are foundational to raising well-rounded children."
-    },
-    {
-      question: "How do you balance work and parenting?",
-      response: "Balancing work and parenting requires setting boundaries and prioritizing time with your children."
-    },
-    {
-      question: "What strategies do you use for effective communication with your child?",
-      response: "Active listening and clear expectations are crucial for effective communication with children."
-    }
-  ],
-  spousal_relationships: [
-    {
-      question: "How do you maintain healthy communication with your spouse?",
-      response: "Regular check-ins and open dialogue help maintain a healthy communication flow in marriage."
-    },
-    {
-      question: "What are the most common conflicts in your marriage and how do you resolve them?",
-      response: "Common conflicts often revolve around money, responsibilities, and parenting. Resolution requires compromise and understanding."
-    },
-    {
-      question: "How do you keep the romance alive in your relationship?",
-      response: "Keeping romance alive involves consistent effort, like planning date nights and showing appreciation."
-    },
-    {
-      question: "What role does trust play in your relationship?",
-      response: "Trust is the foundation of any strong relationship, fostering security and openness between partners."
-    }
-  ],
-  family: [
-    {
-      question: "How do you manage family conflicts?",
-      response: "Managing family conflicts requires patience, open communication, and a willingness to compromise."
-    },
-    {
-      question: "What traditions do you follow in your family?",
-      response: "Traditions like holiday celebrations and weekly dinners strengthen family bonds."
-    },
-    {
-      question: "How do you support each other's growth in your family?",
-      response: "Supporting growth means encouraging each other and respecting individual goals."
-    },
-    {
-      question: "What are the biggest challenges your family faces?",
-      response: "Common challenges include time management and balancing the needs of each family member."
-    }
-  ],
-  quality_relationships: [
-    {
-      question: "How do you define a quality relationship?",
-      response: "A quality relationship is built on mutual respect, trust, and emotional support."
-    },
-    {
-      question: "What are the key ingredients to maintaining a strong relationship?",
-      response: "Good communication, mutual respect, and understanding are essential to maintaining a strong relationship."
-    },
-    {
-      question: "How do you handle disagreements in your relationships?",
-      response: "Handling disagreements calmly and finding a compromise is key to resolving conflicts."
-    },
-    {
-      question: "What role does empathy play in your relationships?",
-      response: "Empathy allows partners to understand each other's perspectives, strengthening the relationship."
-    }
-  ]
+// Additional sentences corresponding to each category
+const ADDITIONAL_INFO = {
+  parenting: "Achieve Mutual Wellness",
+  spousal_relationships: "Intimacy and more",
+  family: "Through Love and Example",
+  quality_relationships: "Quality Relationships"
 };
 
 const Technologies = [
   {
     title: 'Dyadic Health',
     category: 'parenting',
-    description: 'Dyadic Health being the healh of those in dyadic relationship - a relationship of a dyad(pair) - Engage in activities that are fundamental to any dyadic relationship and make yourself robust for any dyadic relationship.'
+    description: 'All Dyadic relationships have an interdependence. Targeted activities focus on interconnectedness.'
   },
   {
     title: 'Spousal Dyad',
     category: 'spousal_relationships',
-    description: 'Activities focussing on - each partner\'s health, underscoring the importance of fostering unity, empathy, and shared values within the home while maintaining the intimacy spark.'
+    description: "It fosters unity, empathy, intimacy and shared values.Targeted activities focus on each partner's health."
   },
   {
     title: 'Parental Dyad',
     category: 'family',
-    description: 'Activities focussing on - being a balanced parent, providing guidance, security, and love as underlying attributes to the child.'
+    description: 'It fosters guidance, security and loving bond with a child.Targeted activites focus on being a balanced parent.'
   },
   {
     title: 'Other Common Dyads',
     category: 'quality_relationships',
-    description: 'Activities focussing on -  personal boundaries and preferences, encouraging personal growth and development, collaborating, and addressing conflicts constructively - with various other dyadic relationships we encounter day to day.'
+    description: 'On Average, we have several dyadic relationships.Targeted activities focus on collaborating effectively.'
   }
 ];
 
@@ -117,22 +49,19 @@ const Technologies = [
 export default function AppsPage() {
   const theme = useTheme();
   const [slideIndex, setSlideIndex] = useState(0);
-  const [chat, setChat] = useState([{ text: "Please select a question to get started.", isBot: true }]);
+  const [chat, setChat] = useState([{ text: "Please select a category to get started.", isBot: true }]);
   const [activeCategory, setActiveCategory] = useState(null);
   const chatContainerRef = useRef(null);
 
   const handleChange = (index) => {
     const category = Technologies[index].category;
-    setChat([{ text: "Please select a question to get started.", isBot: true }]);
+    setChat([
+      { text: "Please select a category to get started.", isBot: true },
+      { text: Technologies[index].description, isBot: true },
+      { text: ADDITIONAL_INFO[category], isBot: true }
+    ]);
     setSlideIndex(index);
     setActiveCategory(category);
-  };
-
-  const handleQuestionClick = (questionObj) => {
-    // Add the selected question to the chat
-    const newChat = [...chat, { text: questionObj.question, isBot: false }];
-    // Add the bot's response to the chat
-    setChat([...newChat, { text: questionObj.response, isBot: true }]);
   };
 
   // Automatically scroll to the bottom of the chat container when a new message is added
@@ -158,7 +87,7 @@ export default function AppsPage() {
               </Grid>
               <Grid item xs={12} md={7}>
                 <Typography color="white">
-                  Engage with our chatbot by selecting a category and choosing questions to get responses!
+                  Engage with our chatbot by selecting a category to get started!
                 </Typography>
               </Grid>
             </Grid>
@@ -223,7 +152,7 @@ export default function AppsPage() {
                     <Box
                       key={index}
                       sx={{
-                        textAlign: message.isBot ? 'left' : 'right',
+                        textAlign: 'left',  // Bot messages are always on the left
                         mb: 2
                       }}
                     >
@@ -232,35 +161,14 @@ export default function AppsPage() {
                           display: 'inline-block',
                           padding: '10px',
                           borderRadius: '10px',
-                          backgroundColor: message.isBot
-                            ? 'rgba(0, 153, 255, 1)'
-                            : 'rgba(178, 102, 255, 1)',
-                          color: message.isBot ? theme.palette.primary.contrastText : theme.palette.secondary.contrastText
+                          backgroundColor: 'rgba(0, 153, 255, 1)', // Bot message background
+                          color: theme.palette.primary.contrastText  // Bot message text color
                         }}
                       >
                         {message.text}
                       </Typography>
                     </Box>
                   ))}
-                  {activeCategory && (
-                    <Box sx={{ mt: 2 }}>
-                      {QUESTIONS[activeCategory].map((questionObj, i) => (
-                        <Button
-                          key={i}
-                          variant="contained"
-                          sx={{
-                            m: 1,
-                            textTransform: 'none',
-                            backgroundColor: alpha(theme.palette.secondary.main, 0.8),
-                            '&:hover': { backgroundColor: alpha(theme.palette.secondary.main, 1) }
-                          }}
-                          onClick={() => handleQuestionClick(questionObj)}
-                        >
-                          {questionObj.question}
-                        </Button>
-                      ))}
-                    </Box>
-                  )}
                 </Box>
               </Grid>
             </Grid>
