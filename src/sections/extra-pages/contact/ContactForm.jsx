@@ -11,12 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-// select company-size
-const sizes = [
-  { value: '1', label: '1 - 5' },
-  { value: '2', label: '5 - 10' },
-  { value: '3', label: '10+' }
-];
 
 // ==============================|| CONTACT US - FORM ||============================== //
 
@@ -63,15 +57,7 @@ export default function ContactForm() {
                 <TextField fullWidth type="number" placeholder="Phone Number" />
               </Stack>
             </Grid>
-            <Grid item xs={12}>
-              <TextField select fullWidth placeholder="Company Size" value={size} onChange={handleCompanySize}>
-                {sizes.map((option, index) => (
-                  <MenuItem key={index} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Grid>
+            
             <Grid item xs={12}>
               <Stack direction="row" alignItems="center" sx={{ ml: -1 }}>
                 <Checkbox sx={{ '& .css-1vjb4cj': { borderRadius: '2px' } }} defaultChecked />

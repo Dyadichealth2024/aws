@@ -48,7 +48,8 @@ export default function ComboPage() {
   };
 
   const handleContinue = () => {
-    navigate('/video-gallery', { state: { videoList, videosPlayed } });
+    console.log('Navigating to course with data:', { videoList, videosPlayed });
+    navigate('/course', { state: { videoList, videosPlayed } });
   };
 
   const containerStyle = {

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Button, Paper, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Grid, Typography, Button, Paper, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 
 const Traningrelation = () => {
-  const [relationshipType, setRelationshipType] = useState('');
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const [showTrainingPoints, setShowTrainingPoints] = useState(false);
 
-  const handleRelationshipChange = (event) => {
-    setRelationshipType(event.target.value);
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+    setSelectedTypes((prev) =>
+      checked ? [...prev, value] : prev.filter((type) => type !== value)
+    );
     setShowTrainingPoints(false); // Hide training points if relationship type changes
   };
 
@@ -116,21 +119,23 @@ const Traningrelation = () => {
             Select the type of relationship you want to improve, and we will provide you with tailored guidance and training.
           </Typography>
 
-          <FormControl fullWidth variant="outlined" sx={{ mt: 2 }}>
-            <InputLabel>Relationship Type</InputLabel>
-            <Select
-              value={relationshipType}
-              onChange={handleRelationshipChange}
-              label="Relationship Type"
-            >
-              <MenuItem value="Spousal">Spousal Relationship</MenuItem>
-              <MenuItem value="Parenting">Parenting Relationship</MenuItem>
-              <MenuItem value="Family">Family Relationship</MenuItem>
-              <MenuItem value="Others">Others Relationship</MenuItem>
-            </Select>
-          </FormControl>
+          <FormGroup row sx={{ mt: 2 }}>
+            {Object.keys(trainingPoints).map((type) => (
+              <FormControlLabel
+                key={type}
+                control={
+                  <Checkbox
+                    value={type}
+                    checked={selectedTypes.includes(type)}
+                    onChange={handleCheckboxChange}
+                  />
+                }
+                label={type}
+              />
+            ))}
+          </FormGroup>
 
-          {relationshipType && (
+          {selectedTypes.length > 0 && (
             <Button
               variant="contained"
               color="primary"
@@ -142,47 +147,51 @@ const Traningrelation = () => {
           )}
         </Grid>
 
-        {showTrainingPoints && relationshipType && (
+        {showTrainingPoints && selectedTypes.length > 0 && (
           <Grid item xs={12} sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom>
-              Training Points for {relationshipType} Relationship
-            </Typography>
+            {selectedTypes.map((type) => (
+              <div key={type}>
+                <Typography variant="h6" gutterBottom>
+                  Training Points for {type} Relationship
+                </Typography>
 
-            <Typography variant="subtitle1" gutterBottom>
-              Communication:
-            </Typography>
-            <ul>
-              {trainingPoints[relationshipType].communication.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+                <Typography variant="subtitle1" gutterBottom>
+                  Communication:
+                </Typography>
+                <ul>
+                  {trainingPoints[type].communication.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
 
-            <Typography variant="subtitle1" gutterBottom>
-              Quality Time:
-            </Typography>
-            <ul>
-              {trainingPoints[relationshipType].qualityTime.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+                <Typography variant="subtitle1" gutterBottom>
+                  Quality Time:
+                </Typography>
+                <ul>
+                  {trainingPoints[type].qualityTime.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
 
-            <Typography variant="subtitle1" gutterBottom>
-              Conflict Resolution:
-            </Typography>
-            <ul>
-              {trainingPoints[relationshipType].conflictResolution.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+                <Typography variant="subtitle1" gutterBottom>
+                  Conflict Resolution:
+                </Typography>
+                <ul>
+                  {trainingPoints[type].conflictResolution.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
 
-            <Typography variant="subtitle1" gutterBottom>
-              Understanding:
-            </Typography>
-            <ul>
-              {trainingPoints[relationshipType].understanding.map((point, index) => (
-                <li key={index}>{point}</li>
-              ))}
-            </ul>
+                <Typography variant="subtitle1" gutterBottom>
+                  Understanding:
+                </Typography>
+                <ul>
+                  {trainingPoints[type].understanding.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </Grid>
         )}
       </Grid>

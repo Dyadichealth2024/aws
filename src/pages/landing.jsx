@@ -62,7 +62,7 @@ export default function Landing() {
               ...(view === 'combo' && styles.buttonDisabled),
             }}
           >
-            Video
+            Videos
           </button>
           <button
             onClick={() => handleToggle('articles')}

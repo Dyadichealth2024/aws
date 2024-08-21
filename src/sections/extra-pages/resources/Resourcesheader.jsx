@@ -17,7 +17,7 @@ export default function ContactHeader() {
         <Box sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, py: 6, mx: 'auto' }}>
           <Stack spacing={1}>
             <Typography align="center" variant="h2">
-              Learn more about DH
+              Learning Resources
             </Typography>
             <Typography align="center" color="text.secondary">
               We are hear to help you learn about DH
