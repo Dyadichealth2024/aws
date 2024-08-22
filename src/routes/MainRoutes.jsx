@@ -309,37 +309,37 @@ const MainRoutes = {
                 }
               ]
             },
-            {
-              path: 'e-commerce',
-              children: [
-                {
-                  path: 'products',
-                  element: <AppECommProducts />,
-                  loader: productsLoader,
-                  errorElement: <ErrorBoundary />
-                },
-                {
-                  path: 'product-details/:id',
-                  element: <AppECommProductDetails />,
-                  loader: productLoader,
-                  errorElement: <ErrorBoundary />
-                },
-                {
-                  path: 'product-list',
-                  element: <AppECommProductList />,
-                  loader: productsLoader,
-                  errorElement: <ErrorBoundary />
-                },
-                {
-                  path: 'add-new-product',
-                  element: <AppECommAddProduct />
-                },
-                {
-                  path: 'checkout',
-                  element: <AppECommCheckout />
-                }
-              ]
-            }
+            // {
+            //   path: 'e-commerce',
+            //   children: [
+            //     {
+            //       path: 'products',
+            //       element: <AppECommProducts />,
+            //       loader: productsLoader,
+            //       errorElement: <ErrorBoundary />
+            //     },
+            //     {
+            //       path: 'product-details/:id',
+            //       element: <AppECommProductDetails />,
+            //       loader: productLoader,
+            //       errorElement: <ErrorBoundary />
+            //     },
+            //     {
+            //       path: 'product-list',
+            //       element: <AppECommProductList />,
+            //       loader: productsLoader,
+            //       errorElement: <ErrorBoundary />
+            //     },
+            //     {
+            //       path: 'add-new-product',
+            //       element: <AppECommAddProduct />
+            //     },
+            //     {
+            //       path: 'checkout',
+            //       element: <AppECommCheckout />
+            //     }
+            //   ]
+            // }
           ]
         },
         {
@@ -529,19 +529,19 @@ const MainRoutes = {
           path: 'sample-page',
           element: <SamplePage />
         },
-        {
-          path: 'price',
-          children: [
-            {
-              path: 'price1',
-              element: <PricingPage />
-            },
-            {
-              path: 'price2',
-              element: <PricingPage2 />
-            }
-          ]
-        }
+        // {
+        //   path: 'price',
+        //   children: [
+        //     {
+        //       path: 'price1',
+        //       element: <PricingPage />
+        //     },
+        //     {
+        //       path: 'price2',
+        //       element: <PricingPage2 />
+        //     }
+        //   ]
+        // }
       ]
     },
     {

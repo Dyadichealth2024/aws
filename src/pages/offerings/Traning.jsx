@@ -16,8 +16,8 @@ export default function Traning() {
           <Traningheader />
         </Grid>
 
-        <Grid item xs={12}>
-          <Traningrelation />
+        <Grid item xs={12} >
+          {<Traningrelation /> }
         </Grid>
       </Grid>
     </Container>

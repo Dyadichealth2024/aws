@@ -16,7 +16,7 @@ export default function Video() {
   };
 
   return (
-    <Container style={{ padding: '20px' }}>
+    <Container style={{ padding: '20px', paddingTop: '80px' }}>  {/* Adjust paddingTop as needed */}
       <h1>Course Page</h1>
       {videoList.length > 0 ? (
         <VideoPlayer videoList={videoList} videosPlayed={videosPlayed} onVideoEnd={handleVideoEnd} />

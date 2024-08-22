@@ -4,61 +4,82 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import styled from 'styled-components';
-import MainCard from 'components/MainCard';  // Keep the imported MainCard here
+import MainCard from 'components/MainCard';  // Using MainCard as imported
 import { useNavigate } from 'react-router-dom';
 import Artical1 from "../assets/images/articles/article1.png";
 import Artical2 from "../assets/images/articles/article2.png";
-// Sample articles data using the uploaded image
+
 const articles = [
   {
-    imgSrc: Artical1, 
+    imgSrc: Artical1,
     content: "Content for article on Dyadic Health...",
   },
   {
-    imgSrc: Artical2, 
+    imgSrc: Artical2,
     content: "Content for article on Dyadic Health...",
   },
-  // ... add more articles as needed
+  {
+    imgSrc: Artical2,
+    content: "Content for article on Dyadic Health...",
+  },
+  {
+    imgSrc: Artical1,
+    content: "Content for article on Dyadic Health...",
+  },
+  {
+    imgSrc: Artical2,
+    content: "Content for article on Dyadic Health...",
+  },
+  {
+    imgSrc: Artical2,
+    content: "Content for article on Dyadic Health...",
+  },
 ];
 
 const ArticleContainer = styled.div`
   display: flex;
-  flex-wrap: nowrap;
   gap: 10px;
   overflow-x: auto;
   padding: 20px 0;
   scroll-behavior: smooth;
   position: relative;
+  max-width: 100%;
+  white-space: nowrap;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const StyledMainCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 0;
-  background-color: #80b3ff; /* Previous light blue color */
-  border-radius: 12px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+const ScrollButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  ${props => (props.direction === 'left' ? 'left: 0;' : 'right: 0;')}
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 `;
 
 const ArticleCard = styled.div`
-  min-width: 100px;
+  flex: 1 0 150px;
+  max-width: 200px;
   height: 100%;
-  background: ${props => props.bgColor || '#fff'};
+  background: #80b3ff; /* Ensure this matches the MainCard background */
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;  /* Align items to the top */
+  justify-content: flex-start;
   align-items: center;
   padding: 0;
   margin: 0;
@@ -71,29 +92,35 @@ const ArticleTitle = styled(Typography)`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  margin: 0; /* Remove margin */
-  padding: 10px; /* Add padding to control spacing */
-  background-color: ${props => props.bgColor || 'inherit'};
-  width: 100%; /* Ensure the title takes full width */
+  margin: 0;
+  padding: 10px;
+  background-color: #80b3ff; /* Match this with the ArticleCard background */
+  width: 100%;
 `;
+
 
 const ArticleImage = styled.img`
   width: 100%;
   height: auto;
-  object-fit: cover; /* Cover ensures the image fully fills its container */
-  margin: 0; /* Remove any margin */
-  padding: 0; /* Remove any padding */
-  flex-grow: 1; /* Allow the image to take up the remaining space */
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
 `;
 
 export default function ComboPage() {
   const [selectedContent, setSelectedContent] = useState(articles[0]);
-
   const containerRef = useRef(null);
-  const navigate = useNavigate();
 
-  const handleArticleSelect = (article) => {
-    setSelectedContent(article);
+  const handleScroll = (direction) => {
+    if (containerRef.current) {
+      const scrollAmount = 300;
+      containerRef.current.scrollBy({
+        top: 0,
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
   };
 
   const containerStyle = {
@@ -101,6 +128,7 @@ export default function ComboPage() {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#80b3ff', /* Set this to the desired background color */
   };
 
   return (
@@ -112,33 +140,32 @@ export default function ComboPage() {
           </Typography>
         </Box>
         <Grid container spacing={3} alignItems="center" justifyContent="center">
-          <Grid item xs={12} md={6}>
-            <StyledMainCard style={containerStyle}>
-              <ArticleContainer ref={containerRef}>
-                {articles.map((article, index) => (
-                  <ArticleCard key={index} onClick={() => handleArticleSelect(article)}>
-                    <ArticleTitle variant="h6" bgColor="#80b3ff">
-                      {article.title}
-                    </ArticleTitle>
-                    <ArticleImage src={article.imgSrc} alt={article.title} />
-                  </ArticleCard>
-                ))}
-              </ArticleContainer>
-            </StyledMainCard>
+          <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
+            <ScrollButton direction="left" onClick={() => handleScroll('left')}>←</ScrollButton>
+            <ArticleContainer ref={containerRef}>
+              {articles.map((article, index) => (
+                <ArticleCard key={index} onClick={() => setSelectedContent(article)}>
+                  <ArticleTitle variant="h6" bgColor="#80b3ff">
+                    {article.title}
+                  </ArticleTitle>
+                  <ArticleImage src={article.imgSrc} alt={article.title} />
+                </ArticleCard>
+              ))}
+            </ArticleContainer>
+            <ScrollButton direction="right" onClick={() => handleScroll('right')}>→</ScrollButton>
           </Grid>
           <Grid item xs={12} md={6}>
-            <StyledMainCard style={containerStyle}>
+            <MainCard style={containerStyle}>
               <Typography variant="h5" gutterBottom>
                 {selectedContent.title}
               </Typography>
               <Typography variant="body1">
                 {selectedContent.content}
               </Typography>
-            </StyledMainCard>
+            </MainCard>
           </Grid>
         </Grid>
       </Container>
     </Box>
   );
 }
-

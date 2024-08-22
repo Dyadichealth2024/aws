@@ -1,16 +1,51 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Button, Paper, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { Grid, Typography, Button, Paper } from '@mui/material';
+import { styled } from '@mui/system';
+import { Favorite, FamilyRestroom, ChildCare, People } from '@mui/icons-material';
+
+const Bubble = styled('div')(({ theme, selected }) => ({
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '20px 40px',
+  margin: '10px',
+  borderRadius: '50%',
+  background: selected ? `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})` : theme.palette.grey[300],
+  color: selected ? theme.palette.primary.contrastText : theme.palette.text.primary,
+  cursor: 'pointer',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  boxShadow: selected ? '0px 8px 20px rgba(0, 0, 0, 0.4)' : '0px 4px 10px rgba(0, 0, 0, 0.2)',
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.1)',
+    boxShadow: '0px 10px 25px rgba(0, 0, 0, 0.3)',
+  },
+  '& > svg': {
+    marginRight: '8px',
+  },
+}));
+
+const icons = {
+  Spousal: <Favorite />,
+  Parenting: <ChildCare />,
+  Family: <FamilyRestroom />,
+  Others: <People />,
+};
 
 const Traningrelation = () => {
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [showTrainingPoints, setShowTrainingPoints] = useState(false);
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    setSelectedTypes((prev) =>
-      checked ? [...prev, value] : prev.filter((type) => type !== value)
-    );
-    setShowTrainingPoints(false); // Hide training points if relationship type changes
+  const handleBubbleClick = (type) => {
+    const typeIndex = selectedTypes.indexOf(type);
+    if (typeIndex === -1) {
+      setSelectedTypes([...selectedTypes, type]);
+    } else {
+      const newSelectedTypes = selectedTypes.filter((t) => t !== type);
+      setSelectedTypes(newSelectedTypes);
+    }
+    setShowTrainingPoints(false);
   };
 
   const handleStartTraining = () => {
@@ -109,48 +144,70 @@ const Traningrelation = () => {
   };
 
   return (
-    <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12}>
-          <Typography variant="h5" gutterBottom>
+    <Paper
+      elevation={3}
+      sx={{
+        p: 4,
+        mt: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        background: 'linear-gradient(135deg, #f0f4f8, #d9e2ec)',
+        borderRadius: '15px',
+      }}
+    >
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs={12} sx={{ textAlign: 'center' }}>
+          <Typography variant="h4" gutterBottom>
             Improve Your Relationship
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Select the type of relationship you want to improve, and we will provide you with tailored guidance and training.
+            You can select multiple relations that you want to improve. Please select them based on your priority.
           </Typography>
+        </Grid>
 
-          <FormGroup row sx={{ mt: 2 }}>
+        <Grid item xs={12} sx={{ textAlign: 'center' }}>
+          <Grid container spacing={2} justifyContent="center">
             {Object.keys(trainingPoints).map((type) => (
-              <FormControlLabel
-                key={type}
-                control={
-                  <Checkbox
-                    value={type}
-                    checked={selectedTypes.includes(type)}
-                    onChange={handleCheckboxChange}
-                  />
-                }
-                label={type}
-              />
+              <Grid item key={type}>
+                <Bubble
+                  selected={selectedTypes.includes(type)}
+                  onClick={() => handleBubbleClick(type)}
+                >
+                  {icons[type]}
+                  {selectedTypes.indexOf(type) !== -1 ? `${selectedTypes.indexOf(type) + 1} ` : ''}{type}
+                </Bubble>
+              </Grid>
             ))}
-          </FormGroup>
+          </Grid>
+        </Grid>
 
-          {selectedTypes.length > 0 && (
+        {selectedTypes.length > 0 && (
+          <Grid item xs={12} sx={{ textAlign: 'center', mt: 4 }}>
             <Button
               variant="contained"
               color="primary"
-              sx={{ mt: 4 }}
+              sx={{
+                padding: '10px 20px',
+                borderRadius: '25px',
+                transition: 'background-color 0.3s ease',
+                '&:hover': {
+                  backgroundColor: '#1976d2',
+                },
+              }}
               onClick={handleStartTraining}
             >
               Start Training
             </Button>
-          )}
-        </Grid>
+          </Grid>
+        )}
+      </Grid>
 
-        {showTrainingPoints && selectedTypes.length > 0 && (
-          <Grid item xs={12} sx={{ mt: 4 }}>
+      {showTrainingPoints && selectedTypes.length > 0 && (
+        <Grid container spacing={2} justifyContent="center" sx={{ mt: 4 }}>
+          <Grid item xs={12} md={8}>
             {selectedTypes.map((type) => (
-              <div key={type}>
+              <div key={type} style={{ textAlign: 'center', marginBottom: '20px' }}>
                 <Typography variant="h6" gutterBottom>
                   Training Points for {type} Relationship
                 </Typography>
@@ -158,7 +215,7 @@ const Traningrelation = () => {
                 <Typography variant="subtitle1" gutterBottom>
                   Communication:
                 </Typography>
-                <ul>
+                <ul style={{ textAlign: 'left', display: 'inline-block' }}>
                   {trainingPoints[type].communication.map((point, index) => (
                     <li key={index}>{point}</li>
                   ))}
@@ -167,7 +224,7 @@ const Traningrelation = () => {
                 <Typography variant="subtitle1" gutterBottom>
                   Quality Time:
                 </Typography>
-                <ul>
+                <ul style={{ textAlign: 'left', display: 'inline-block' }}>
                   {trainingPoints[type].qualityTime.map((point, index) => (
                     <li key={index}>{point}</li>
                   ))}
@@ -176,7 +233,7 @@ const Traningrelation = () => {
                 <Typography variant="subtitle1" gutterBottom>
                   Conflict Resolution:
                 </Typography>
-                <ul>
+                <ul style={{ textAlign: 'left', display: 'inline-block' }}>
                   {trainingPoints[type].conflictResolution.map((point, index) => (
                     <li key={index}>{point}</li>
                   ))}
@@ -185,7 +242,7 @@ const Traningrelation = () => {
                 <Typography variant="subtitle1" gutterBottom>
                   Understanding:
                 </Typography>
-                <ul>
+                <ul style={{ textAlign: 'left', display: 'inline-block' }}>
                   {trainingPoints[type].understanding.map((point, index) => (
                     <li key={index}>{point}</li>
                   ))}
@@ -193,8 +250,8 @@ const Traningrelation = () => {
               </div>
             ))}
           </Grid>
-        )}
-      </Grid>
+        </Grid>
+      )}
     </Paper>
   );
 };
