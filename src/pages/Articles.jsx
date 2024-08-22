@@ -8,6 +8,11 @@ import MainCard from 'components/MainCard';  // Using MainCard as imported
 import { useNavigate } from 'react-router-dom';
 import Artical1 from "../assets/images/articles/article1.png";
 import Artical2 from "../assets/images/articles/article2.png";
+import Artical3 from "../assets/images/articles/article3.png";
+import Artical4 from "../assets/images/articles/article4.png";
+import Artical5 from "../assets/images/articles/article5.png";
+
+
 
 const articles = [
   {
@@ -19,20 +24,16 @@ const articles = [
     content: "2",
   },
   {
-    imgSrc: Artical2,
+    imgSrc: Artical3,
     content: "3",
   },
   {
-    imgSrc: Artical1,
+    imgSrc: Artical4,
     content: "4",
   },
   {
-    imgSrc: Artical2,
+    imgSrc: Artical5,
     content: "5",
-  },
-  {
-    imgSrc: Artical2,
-    content: "6",
   },
 ];
 
