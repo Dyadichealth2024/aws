@@ -113,33 +113,6 @@ export default function TechnologiesPage() {
   return (
     <Box sx={{ backgroundColor: '#f4f6f8', minHeight: '70vh', padding: 3 }}>
       <Container>
-        {alertMessage && (
-          <Alert
-            severity="warning"
-            ref={alertRef}
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setAlertMessage('');
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{
-              mb: 1,
-              backgroundColor: '#fff3e0',
-              color: '#d84315',
-              borderRadius: '8px',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-            }}
-          >
-            {alertMessage}
-          </Alert>
-        )}
         <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 1, xs: 2.5 }, mb: { md: 1, xs: 2.5 } }}>
           <Grid item xs={12}>
             <Grid container spacing={2} sx={{ textAlign: 'center', marginBottom: 3 }}>
@@ -168,7 +141,7 @@ export default function TechnologiesPage() {
                     delay: 0.4
                   }}
                 >
-                  <Typography sx={{ color: '#607d8b' }}>Explore activities that help strengthen the personal foundation in Dyadic Health</Typography>
+                  <Typography sx={{ color: '#607d8b' }}>Explore activities that help strengthen your foundation in Dyadic Health</Typography>
                 </motion.div>
               </Grid>
               <Grid item xs={12}>
@@ -184,6 +157,33 @@ export default function TechnologiesPage() {
                 >
                   {/* <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#37474f', mt: 2 }}>Explore</Typography> */}
                 </motion.div>
+                {alertMessage && (
+                  <Alert
+                    severity="warning"
+                    ref={alertRef}
+                    action={
+                      <IconButton
+                        aria-label="close"
+                        color="inherit"
+                        size="small"
+                        onClick={() => {
+                          setAlertMessage('');
+                        }}
+                      >
+                        <CloseIcon fontSize="inherit" />
+                      </IconButton>
+                    }
+                    sx={{
+                      mb: 1,
+                      backgroundColor: '#fff3e0',
+                      color: '#d84315',
+                      borderRadius: '8px',
+                      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+                    }}
+                  >
+                    {alertMessage}
+                  </Alert>
+                )}
               </Grid>
             </Grid>
           </Grid>

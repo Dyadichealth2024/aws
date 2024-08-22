@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField'; // Import TextField component
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // project-imports
 import FadeInWhenVisible from './Animation';
@@ -43,29 +44,30 @@ export default function FreePage() {
   return (
     <Container>
       <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 10, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12}>
           <FadeInWhenVisible>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12}>
-                <Typography variant="h2">
-                  <Box
-                    component="span"
-                    sx={{
-                      color: theme.palette.primary.main
-                    }}
-                  >
-                    Track{' '}
-                  </Box>
-                  Your Activity
-                </Typography>
-              </Grid>
-            </Grid>
+            <Box textAlign="center">
+              <Typography variant="h2">
+                <Box
+                  component="span"
+                  sx={{
+                    color: theme.palette.primary.main
+                  }}
+                >
+                  Track{' '}
+                </Box>
+                Your Activity
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 1 }}>
+                If you register, you will be able to track your learning and training activities
+              </Typography>
+            </Box>
           </FadeInWhenVisible>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <FadeInWhenVisible>
             <Box
-              sx={{ display: 'flex', alignItems: 'center', gap: 2 }} // Flexbox to align items horizontally with spacing
+              sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }} // Flexbox to center items vertically
             >
               {/* Email input field */}
               <TextField
@@ -85,15 +87,17 @@ export default function FreePage() {
                 size="large"
                 startIcon={<ExportSquare />}
                 component={Link}
+                to="/register"  // Navigate to /register page
                 onClick={handleSubmit}
                 disabled={!email || error} // Disable button if email is invalid or empty
-              >
-                submit
+                >
+                Register
               </Button>
             </Box>
           </FadeInWhenVisible>
         </Grid>
       </Grid>
     </Container>
+
   );
 }

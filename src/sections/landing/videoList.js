@@ -16,17 +16,17 @@ const videoList = [
   },
   {
     id: 'ZtrQRPdePmE',
-    title: 'New Video',
+    title: 'Video 4',
     thumbnail: 'https://img.youtube.com/vi/ZtrQRPdePmE/0.jpg'
   },
   {
     id: 'gxvpOq8JlPI',
-    title: 'Video 4',
+    title: 'Video 5',
     thumbnail: 'https://img.youtube.com/vi/gxvpOq8JlPI/0.jpg'
   },
   {
     id: 'BKyEDfnDAWM',
-    title: 'Video 5',
+    title: 'Video 6',
     thumbnail: 'https://img.youtube.com/vi/BKyEDfnDAWM/0.jpg'
   },
 ];

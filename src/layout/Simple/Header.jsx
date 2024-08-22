@@ -200,10 +200,10 @@ export default function Header({ layout = 'landing', ...others }) {
                 className="header-link"
                 color="secondary.main"
                 component={RouterLink}
-                to="/contact-us"
+                to="/login"
                 underline="none"
               >
-                Contact Us
+                login
               </Link>       
             </Stack>
             <Box
