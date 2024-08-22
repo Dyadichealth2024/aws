@@ -161,18 +161,17 @@ const MainRoutes = {
             {
               path: 'analytics',
               element: <DashboardAnalytics />
-            }
+            },
+            // {
+            //   path: 'combo',
+            //   element: <Combo />
+            // },
+            // {
+            //   path: 'course',
+            //   element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
+            // }
           ]
         },
-        {
-          path: 'combo',
-          element: <Combo />
-        },
-        {
-          path: 'course',
-          element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
-        },
-        
         {
           path: 'widget',
           children: [
@@ -583,6 +582,15 @@ const MainRoutes = {
           path: 'traning', // Add this line
           element: <Traning /> // Add this line
         },
+        {
+          path: 'combo',
+          element: <Combo />
+        },
+        {
+          path: 'course',
+          element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
+        }
+
         
       ]
     },
