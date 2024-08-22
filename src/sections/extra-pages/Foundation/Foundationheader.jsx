@@ -20,7 +20,7 @@ export default function ContactHeader() {
             Strengthen Your Personal Foundation
             </Typography>
             <Typography align="center" color="text.secondary">
-            Activities that help strengthen the personal foundation in Dyadic Health
+            Activities that help strengthen the your personal foundation in Dyadic Health
             </Typography>
           </Stack>
         </Box>
