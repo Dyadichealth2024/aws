@@ -8,7 +8,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField'; // Import TextField component
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 // project-imports
 import FadeInWhenVisible from './Animation';
@@ -88,7 +87,7 @@ export default function FreePage() {
                 startIcon={<ExportSquare />}
                 component={Link}
                 to="/register"  // Navigate to /register page
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 disabled={!email || error} // Disable button if email is invalid or empty
                 >
                 Register

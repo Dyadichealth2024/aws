@@ -12,27 +12,27 @@ import Artical2 from "../assets/images/articles/article2.png";
 const articles = [
   {
     imgSrc: Artical1,
-    content: "Content for article on Dyadic Health...",
+    content: "1",
   },
   {
     imgSrc: Artical2,
-    content: "Content for article on Dyadic Health...",
+    content: "2",
   },
   {
     imgSrc: Artical2,
-    content: "Content for article on Dyadic Health...",
+    content: "3",
   },
   {
     imgSrc: Artical1,
-    content: "Content for article on Dyadic Health...",
+    content: "4",
   },
   {
     imgSrc: Artical2,
-    content: "Content for article on Dyadic Health...",
+    content: "5",
   },
   {
     imgSrc: Artical2,
-    content: "Content for article on Dyadic Health...",
+    content: "6",
   },
 ];
 
@@ -70,7 +70,7 @@ const ArticleCard = styled.div`
   flex: 1 0 150px;
   max-width: 200px;
   height: 100%;
-  background: #80b3ff; /* Ensure this matches the MainCard background */
+  background: #80b3ff; /* This matches the MainCard background */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -88,16 +88,16 @@ const ArticleCard = styled.div`
   }
 `;
 
+
 const ArticleTitle = styled(Typography)`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
   margin: 0;
   padding: 10px;
-  background-color: #80b3ff; /* Match this with the ArticleCard background */
+  background-color: ${props => props.bgColor || 'inherit'};
   width: 100%;
 `;
-
 
 const ArticleImage = styled.img`
   width: 100%;
@@ -139,32 +139,70 @@ export default function ComboPage() {
             Article Gallery
           </Typography>
         </Box>
-        <Grid container spacing={3} alignItems="center" justifyContent="center">
-          <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
-            <ScrollButton direction="left" onClick={() => handleScroll('left')}>←</ScrollButton>
-            <ArticleContainer ref={containerRef}>
-              {articles.map((article, index) => (
-                <ArticleCard key={index} onClick={() => setSelectedContent(article)}>
-                  <ArticleTitle variant="h6" bgColor="#80b3ff">
-                    {article.title}
-                  </ArticleTitle>
-                  <ArticleImage src={article.imgSrc} alt={article.title} />
-                </ArticleCard>
-              ))}
-            </ArticleContainer>
-            <ScrollButton direction="right" onClick={() => handleScroll('right')}>→</ScrollButton>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <MainCard style={containerStyle}>
-              <Typography variant="h5" gutterBottom>
-                {selectedContent.title}
-              </Typography>
-              <Typography variant="body1">
-                {selectedContent.content}
-              </Typography>
-            </MainCard>
-          </Grid>
-        </Grid>
+        <Grid container spacing={3} alignItems="stretch" justifyContent="center">
+  {/* Left Side: Article Scrollable Container */}
+  <Grid item xs={12} md={6} sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      justifyContent: 'center',
+      minHeight: '10cm',
+  }}>
+    <MainCard style={{ 
+        width: '100%', 
+        height: '100%', 
+        backgroundColor: '#80b3ff',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }}>
+      <ScrollButton direction="left" onClick={() => handleScroll('left')}>←</ScrollButton>
+      <ArticleContainer ref={containerRef} style={{ 
+          flexGrow: 1, 
+          width: '100%', 
+          overflowX: 'auto', 
+          display: 'flex', 
+          alignItems: 'center',
+          padding: '10px'
+      }}>
+        {articles.map((article, index) => (
+          <ArticleCard key={index} onClick={() => setSelectedContent(article)}>
+            <ArticleTitle variant="h6" bgColor="#80b3ff">
+              {article.title}
+            </ArticleTitle>
+            <ArticleImage src={article.imgSrc} alt={article.title} />
+          </ArticleCard>
+        ))}
+      </ArticleContainer>
+      <ScrollButton direction="right" onClick={() => handleScroll('right')}>→</ScrollButton>
+    </MainCard>
+  </Grid>
+
+  {/* Right Side: Content Display Container */}
+  <Grid item xs={12} md={6} sx={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      minHeight: '10cm',
+  }}>
+    <MainCard style={{ 
+        width: '100%', 
+        height: '100%', 
+        backgroundColor: '#80b3ff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '20px'
+    }}>
+      <Typography variant="h5" gutterBottom>
+        {selectedContent.title}
+      </Typography>
+      <Typography variant="body1">
+        {selectedContent.content}
+      </Typography>
+    </MainCard>
+  </Grid>
+</Grid>
       </Container>
     </Box>
   );
