@@ -141,7 +141,7 @@ export default function TechnologiesPage() {
                     delay: 0.4
                   }}
                 >
-                  <Typography sx={{ color: '#607d8b' }}>Explore activities that help strengthen your foundation in Dyadic Health</Typography>
+                  <Typography sx={{ color: '#607d8b' }}>Activities that help strengthen the personal foundation in Dyadic Health</Typography>
                 </motion.div>
               </Grid>
               <Grid item xs={12}>

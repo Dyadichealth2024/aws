@@ -25,22 +25,22 @@ const Technologies = [
   {
     title: 'Dyadic Health',
     category: 'parenting',
-    description: 'All Dyadic relationships have an interdependence. Targeted activities focus on interconnectedness.'
+    description: 'All Dyadic relationships have an interdependence.\nTargeted activities focus on interconnectedness.'
   },
   {
     title: 'Spousal Dyad',
     category: 'spousal_relationships',
-    description: "It fosters unity, empathy, intimacy and shared values.Targeted activities focus on each partner's health."
+    description: "It fosters unity, empathy, intimacy and shared values.\nTargeted activities focus on each partner's health."
   },
   {
     title: 'Parental Dyad',
     category: 'family',
-    description: 'It fosters guidance, security and loving bond with a child.Targeted activites focus on being a balanced parent.'
+    description: 'It fosters guidance, security and loving bond with a child.\nTargeted activites focus on being a balanced parent.'
   },
   {
     title: 'Other Common Dyads',
     category: 'quality_relationships',
-    description: 'On Average, we have several dyadic relationships.Targeted activities focus on collaborating effectively.'
+    description: 'On Average, we have several dyadic relationships.\nTargeted activities focus on collaborating effectively.'
   }
 ];
 
@@ -87,7 +87,7 @@ export default function AppsPage() {
               </Grid>
               <Grid item xs={12} md={7}>
                 <Typography color="white">
-                  Engage with our chatbot by selecting a category to get started!
+                  Engaging in activities that help enhance the Health of a Dyadic Relationship
                 </Typography>
               </Grid>
             </Grid>
@@ -124,7 +124,9 @@ export default function AppsPage() {
                                 </Typography>
                               </Grid>
                               <Grid item xs={12}>
-                                <Typography color="white">{tech.description}</Typography>
+                                <Typography color="white" style={{ whiteSpace: 'pre-line' }}>
+                                  {tech.description}
+                                </Typography>
                               </Grid>
                             </Grid>
                           </Button>
