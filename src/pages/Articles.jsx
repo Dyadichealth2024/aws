@@ -11,6 +11,7 @@ import Artical2 from "../assets/images/articles/article2.png";
 import Artical3 from "../assets/images/articles/article3.png";
 import Artical4 from "../assets/images/articles/article4.png";
 import Artical5 from "../assets/images/articles/article5.png";
+import Artical6 from "../assets/images/articles/article6.png";
 
 
 
@@ -34,6 +35,10 @@ const articles = [
   {
     imgSrc: Artical5,
     content: "5",
+  },
+  {
+    imgSrc: Artical6,
+    content: '👨‍👩‍👧‍👦 Cracking the Code to a Happier Family 🏡 \n What if the secret to a happier family was right under your nose? 🤔 Turns out, it’s all in the way you connect with your kids! \n Dads as the unsung heroes of family joy, moms adding that special touch—there’s so much more to family dynamics than you might think. And get this: A simple question like “What made you smile today?” can turn an ordinary day into something unforgettable. 😄\n 👉 Want to know how to supercharge your family’s happiness? Dive into my latest article and discover the little things that make a big difference!'
   },
 ];
 
