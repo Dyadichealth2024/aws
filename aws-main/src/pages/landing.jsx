@@ -24,6 +24,9 @@ export default function Landing() {
   const styles = {
     sectionContainer: {
       padding: '20px', // Add some padding around the section content
+      backgroundColor: '#ffffff', // Set the background color to white
+      borderRadius: '10px', // Optional: Add border radius for a rounded container
+      boxShadow: '0 2px 10px rgba(0,0,0,0.1)', // Optional: Add a shadow for better visual separation
     },
     buttonContainer: {
       display: 'flex',
@@ -34,15 +37,16 @@ export default function Landing() {
     button: {
       padding: '10px 20px',
       borderRadius: '5px',
-      border: 'none',
+      border: '1px solid #007bff', // Optional: Add border to match the button color
       cursor: 'pointer',
-      backgroundColor: '#007bff',
-      color: '#fff',
+      backgroundColor: '#ffffff', // Set the button background color to white
+      color: '#007bff', // Change the text color to match the primary theme color
       fontSize: '16px',
       transition: 'background-color 0.3s ease',
     },
     buttonDisabled: {
-      backgroundColor: '#6c757d',
+      backgroundColor: '#f0f0f0', // Lighter gray to indicate disabled state
+      color: '#6c757d',
       cursor: 'not-allowed',
     },
   };
@@ -62,7 +66,7 @@ export default function Landing() {
               ...(view === 'combo' && styles.buttonDisabled),
             }}
           >
-            Learning Resources
+            Videos
           </button>
           <button
             onClick={() => handleToggle('articles')}
