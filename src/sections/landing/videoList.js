@@ -1,10 +1,10 @@
 const videoList = [
   {
-    id: 'RXSdejd3DkQ',
+    id: 'bxuYDT-BWaI',
     title: 'Video 1',
-    thumbnail: 'https://img.youtube.com/vi/RXSdejd3DkQ/0.jpg'
+    thumbnail: 'https://img.youtube.com/vi/bxuYDT-BWaI/0.jpg'
   },
-   //https://youtu.be/RXSdejd3DkQ
+  //https://youtu.be/bxuYDT-BWaI?si=ALVPtxXkavtXhIPX
   {
     id: '68Gf4WVhLtk',
     title: 'Video 2',
@@ -12,10 +12,11 @@ const videoList = [
    //https://youtube.com/shorts/68Gf4WVhLtk?feature=share
   },
   {
-    id: 'L_jWHffIx5E',
+    id: 'GY527WWdgg8',
     title: 'Video 3',
-    thumbnail: 'https://img.youtube.com/vi/L_jWHffIx5E/0.jpg'
+    thumbnail: 'https://img.youtube.com/vi/GY527WWdgg8/0.jpg'
   },
+  //https://youtu.be/GY527WWdgg8?si=5xgixCNd85ZT0afw
   {
     id: 'ZtrQRPdePmE',
     title: 'Video 4',
