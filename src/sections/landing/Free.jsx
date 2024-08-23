@@ -66,7 +66,14 @@ export default function FreePage() {
         <Grid item xs={12} md={6}>
           <FadeInWhenVisible>
             <Box
-              sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }} // Flexbox to center items vertically
+              sx={{
+                width: '50%', // Set width to 50% of the Grid container
+                mx: 'auto', // Center the box horizontally
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2
+              }}
             >
               {/* Email input field */}
               <TextField
@@ -89,7 +96,7 @@ export default function FreePage() {
                 to="/register"  // Navigate to /register page
                 // onClick={handleSubmit}
                 disabled={!email || error} // Disable button if email is invalid or empty
-                >
+              >
                 Register
               </Button>
             </Box>
@@ -97,6 +104,5 @@ export default function FreePage() {
         </Grid>
       </Grid>
     </Container>
-
   );
 }

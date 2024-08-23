@@ -105,7 +105,7 @@ export default function ComboPage() {
       <Container>
         <Box sx={{ marginBottom: 5, marginTop: 2 }}>
           <Typography variant="h4" align="center" gutterBottom>
-            Video Gallery
+            Learning Resources
           </Typography>
         </Box>
         <Grid container spacing={3} alignItems="center" justifyContent="center">
