@@ -196,15 +196,28 @@ export default function Header({ layout = 'landing', ...others }) {
                 </Menu>
               </Box>
 
-              <Link
+              <Button
                 className="header-link"
-                color="secondary.main"
+                color="secondary"
                 component={RouterLink}
                 to="/login"
-                underline="none"
+                variant="outlined" // This makes the button have an outlined style
+                sx={{
+                  borderColor: '#3366ff', // Blue border color
+                  color: '#3366ff', // Blue text color
+                  textTransform: 'none', // Disable uppercase transformation
+                  fontFamily: 'timesnewroman',
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  '&:hover': {
+                    backgroundColor: '#ffffff', // White background on hover
+                    color: '#3366ff', // Keep blue text color on hover
+                    borderColor: '#3366ff', // Maintain blue border color on hover
+                  }
+                }}
               >
-                login
-              </Link>       
+                Login / Sign Up
+              </Button>      
             </Stack>
             <Box
               sx={{
