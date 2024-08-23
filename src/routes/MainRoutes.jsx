@@ -580,7 +580,7 @@ const MainRoutes = {
           element: <Foundation /> // Add this line
         },
         {
-          path: 'traning', // Add this line
+          path: 'training', // Add this line
           element: <Traning /> // Add this line
         },
         {
