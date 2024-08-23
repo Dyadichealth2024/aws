@@ -12,9 +12,9 @@ import CEOInfo from 'sections/extra-pages/about/CEOInfo';
 
 export default function AboutUs() {
   return (
-    <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ mb: 12 }}>
-      {/* Spacer to move the content down */}
-      <Grid item xs={12} sx={{ mt: 8 }}>
+    <Grid container spacing={4} justifyContent="center" alignItems="center" sx={{ mt: 12, mb: 12 }}>
+      {/* Increased spacer to move the content down */}
+      <Grid item xs={12} sx={{ mt: 10 }}> {/* Increase this value to move content further down */}
         {/* New content above the boxes */}
         <Container maxWidth="lg">
           <Box sx={{ textAlign: 'center', mb: 4 }}>
@@ -33,7 +33,7 @@ export default function AboutUs() {
 
       {/* Place AboutHeader and VisionSection side by side */}
       <Grid item xs={12} sm={10} lg={9}>
-        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
+        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 }, mt: 6 }}> {/* Add margin-top here if needed */}
           <Grid container spacing={4} justifyContent="space-around">
             <Grid item xs={12} md={5}>
               <AboutHeader />
@@ -47,7 +47,7 @@ export default function AboutUs() {
 
       {/* CEOInfo component */}
       <Grid item xs={12} sm={10} lg={9}>
-        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
+        <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 }, mt: 6 }}>
           <CEOInfo />
         </Container>
       </Grid>

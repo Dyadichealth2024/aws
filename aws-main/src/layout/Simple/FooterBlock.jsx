@@ -1,48 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Grid, Typography, TextField, Button, Box, Link, IconButton } from '@mui/material';
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  Link,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from '@mui/material';
 import { Facebook, Instagram, Twitter, LinkedIn, YouTube } from '@mui/icons-material';
 import { Link as RouterLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.svg';
 
-
 // ==============================|| CUSTOM STYLED FOOTER ||============================== //
 
 const FooterBlock = ({ isFull }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogTitle, setDialogTitle] = useState('');
+  const [dialogContent, setDialogContent] = useState('');
+
+  const handleOpenDialog = (title, content) => {
+    setDialogTitle(title);
+    setDialogContent(content);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setDialogTitle('');
+    setDialogContent('');
+  };
+
   return (
     <div>
       {/* Footer Section */}
       <footer style={{ backgroundColor: '#f0f0f0', padding: '20px 0' }}>
         <Container>
           <Grid container spacing={3} justifyContent="space-between" alignItems="center">
-          <Grid item xs={12} sm={4}>
-            <Box 
-              sx={{ 
-                width: 320,  // Set the width of the frame
-                height: 120, 
-                overflow: 'hidden', // Ensure that the image doesn't overflow the frame
-                marginBottom: '10px' // Add some space below the image
-              }}
-            >
-              <img 
-                src={logo} 
-                alt="Phoenixcoded" 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'contain'  // Ensure the logo fits within the frame without distortion
-                }} 
-              />
-            </Box>
-            <Typography variant="body2" color="textSecondary">
-              2717 Western Blvd #402-D Raleigh NC 27606<br />
-              +1 571 9347292
-            </Typography>
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <Box
+                sx={{
+                  width: 320, // Set the width of the frame
+                  height: 120,
+                  overflow: 'hidden', // Ensure that the image doesn't overflow the frame
+                  marginBottom: '10px', // Add some space below the image
+                }}
+              >
+                <img
+                  src={logo}
+                  alt="Phoenixcoded"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain', // Ensure the logo fits within the frame without distortion
+                  }}
+                />
+              </Box>
+              <Typography variant="body2" color="textSecondary">
+                2717 Western Blvd #402-D Raleigh NC 27606<br />
+                +1 571 9347292
+              </Typography>
+            </Grid>
             <Grid item xs={12} sm={2}>
               <Typography variant="h4">Company</Typography>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
+
+              <Box mt={2}>
                 <Link
                   className="header-link"
                   color="secondary.main"
@@ -53,9 +80,9 @@ const FooterBlock = ({ isFull }) => {
                   About Us
                 </Link>
               </Box>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
-              <Link
+
+              <Box mt={2}>
+                <Link
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
@@ -68,9 +95,9 @@ const FooterBlock = ({ isFull }) => {
             </Grid>
             <Grid item xs={12} sm={2}>
               <Typography variant="h4">Resources</Typography>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
-              <Link
+
+              <Box mt={2}>
+                <Link
                   className="header-link"
                   color="secondary.main"
                   component={RouterLink}
@@ -80,8 +107,8 @@ const FooterBlock = ({ isFull }) => {
                   Articles
                 </Link>
               </Box>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
+
+              <Box mt={2}>
                 <Link
                   className="header-link"
                   color="secondary.main"
@@ -95,25 +122,25 @@ const FooterBlock = ({ isFull }) => {
             </Grid>
             <Grid item xs={12} sm={2}>
               <Typography variant="h4">Legal</Typography>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between Typography and the first Link */}
+
+              <Box mt={2}>
                 <Link
                   className="header-link"
                   color="secondary.main"
-                  component={RouterLink}
-                  to="/about-us"
+                  component="button"
+                  onClick={() => handleOpenDialog('Terms & Conditions', 'Here is the content for Terms & Conditions...')}
                   underline="none"
                 >
                   Terms & Conditions
                 </Link>
               </Box>
-              
-              <Box mt={2}> {/* Adds margin-top to create space between the first Link and the second Link */}
-              <Link
+
+              <Box mt={2}>
+                <Link
                   className="header-link"
                   color="secondary.main"
-                  component={RouterLink}
-                  to="/contact-us"
+                  component="button"
+                  onClick={() => handleOpenDialog('Privacy Policy', 'Here is the content for Privacy Policy...')}
                   underline="none"
                 >
                   Privacy Policy
@@ -137,12 +164,25 @@ const FooterBlock = ({ isFull }) => {
           </Box>
         </Container>
       </footer>
+
+      {/* Dialog for Terms & Conditions and Privacy Policy */}
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>{dialogTitle}</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2">{dialogContent}</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
 
-FooterBlock.propTypes = { 
-  isFull: PropTypes.bool 
+FooterBlock.propTypes = {
+  isFull: PropTypes.bool,
 };
 
 export default FooterBlock;

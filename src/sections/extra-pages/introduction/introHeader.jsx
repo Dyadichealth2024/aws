@@ -1,20 +1,32 @@
+// material-ui
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+// assets
+import AuthBackground from 'assets/images/auth/AuthBackground';
+
+// ==============================|| CONTACT US - HEADER ||============================== //
 
 export default function IntroHeader() {
   return (
-    <Box sx={{ my: 4, py: 4, px: 4, backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 1 }}>
-      <Box sx={{ width: '100%', mx: 'auto' }}>
-        <Stack spacing={2}>
-          <Typography align="center" variant="h4">
-            Our Vision
-          </Typography>
-          <Typography align="center" color="text.secondary">
-            Transforming humans to enjoy their time together with enormously renewed and balanced energy levels.
-          </Typography>
-        </Stack>
-      </Box>
+    <Box sx={{ position: 'relative', overflow: 'hidden', pt: 9, pb: 2 }}>
+      <AuthBackground />
+      <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
+        <Box sx={{ width: { xs: '100%', sm: 252, md: 360, lg: 436 }, py: 6, mx: 'auto' }}>
+          <Stack spacing={1}>
+            <Typography align="center" variant="h2">
+              Indroduction
+            </Typography>
+            <Typography align="center" color="text.secondary">
+            Blending the physical health of a self into the realm of dyadic relationships.
+
+
+            </Typography>
+          </Stack>
+        </Box>
+      </Container>
     </Box>
   );
 }
