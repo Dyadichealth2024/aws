@@ -589,7 +589,11 @@ const MainRoutes = {
         {
           path: 'course',
           element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
-        }
+        },
+        {
+          path: 'Introduction',
+          element: <Introduction />
+        },
 
         
       ]

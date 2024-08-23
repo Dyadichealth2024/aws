@@ -40,7 +40,7 @@ const Technologies = [
   {
     trending: false,
     icon: techNet,
-    title: 'Whole Health',
+    title: 'Introduction',
     description: 'Blending the physical health of a self into the realm of dyadic relationships',
     preview: ispValue !== null && parseInt(ispValue) === 1
       ? 'https://able-pro.azurewebsites.net/?isp=1'
