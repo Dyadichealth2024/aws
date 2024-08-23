@@ -579,8 +579,8 @@ const MainRoutes = {
           element: <Foundation /> // Add this line
         },
         {
-          path: 'traning', // Add this line
-          element: <Traning /> // Add this line
+          path: 'Training', // Add this line
+          element: <Training /> // Add this line
         },
         {
           path: 'combo',
