@@ -133,6 +133,7 @@ const ContactUS = Loadable(lazy(() => import('pages/contact-us')));
 const PricingPage = Loadable(lazy(() => import('pages/extra-pages/price/price1')));
 const PricingPage2 = Loadable(lazy(() => import('pages/extra-pages/price/price2')));
 const AboutUs = Loadable(lazy(() => import('pages/AboutUs')));
+const Introduction = Loadable(lazy(() => import('pages/Introduction')));
 const Articles = Loadable(lazy(() => import('pages/offerings/Articles'))); // Add this line
 const Resources = Loadable(lazy(() => import('pages/offerings/Resources')));
 const Foundation = Loadable(lazy(() => import('pages/offerings/Foundation')));
@@ -591,7 +592,7 @@ const MainRoutes = {
           element: <Video />  // Use <Video /> if you're keeping the file named Video.jsx
         },
         {
-          path: 'Introduction',
+          path: 'introduction',
           element: <Introduction />
         },
 

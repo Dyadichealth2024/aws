@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';  // Import RouterLink from react-router-dom
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -189,6 +189,10 @@ const TechnologiesPage = () => {
             <Grid container spacing={3} alignItems="center">
               {Technologies.map((tech, index) => {
                 const isLocked = index > completedCourses;
+
+                // Check if this is the Introduction course
+                const isIntroduction = tech.title === 'Introduction';
+
                 return (
                   <Grid item xs={12} md={6} lg={4} key={index}>
                     <Box sx={{ position: 'relative', borderRadius: '12px', overflow: 'hidden' }}>
@@ -240,29 +244,53 @@ const TechnologiesPage = () => {
                             <Grid item xs={12}>
                               <Grid container spacing={2} justifyContent="flex-start">
                                 <Grid item>
+                                  {isIntroduction ? (
                                   <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    size="large"
-                                    startIcon={isLocked ? <LockIcon /> : <ExportSquare />}
-                                    component={Link}
-                                    href={isLocked ? '#' : tech.preview}
-                                    target="_blank"
-                                    disabled={isLocked}
-                                    onClick={!isLocked ? handleCourseComplete : undefined}
-                                    sx={{
-                                      fontWeight: 500,
-                                      bgcolor: isLocked ? 'grey.500' : 'secondary.light',
-                                      color: isLocked ? 'white' : 'secondary.darker',
-                                      transition: 'all 0.3s ease',
-                                      '&:hover': {
-                                        color: isLocked ? 'grey.100' : 'secondary.lighter',
-                                        transform: 'translateY(-2px)'
-                                      }
-                                    }}
-                                  >
-                                    {isLocked ? 'Locked' : 'Start'}
-                                  </Button>
+                                  variant="contained"
+                                  color="secondary"
+                                  size="large"
+                                  startIcon={<ExportSquare />}
+                                  component={RouterLink}  // Ensure this is using RouterLink
+                                  to="/training"  // or /introduction or any valid route
+                                  onClick={!isLocked ? handleCourseComplete : undefined}
+                                  sx={{
+                                    fontWeight: 500,
+                                    bgcolor: 'secondary.light',
+                                    color: 'secondary.darker',
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                      color: 'secondary.lighter',
+                                      transform: 'translateY(-2px)',
+                                    },
+                                  }}
+                                >
+                                  Start
+                                </Button>
+                                  ) : (
+                                    <Button
+                                      variant="contained"
+                                      color="secondary"
+                                      size="large"
+                                      startIcon={isLocked ? <LockIcon /> : <ExportSquare />}
+                                      component={Link}
+                                      href={isLocked ? '#' : tech.preview}
+                                      target="_blank"
+                                      disabled={isLocked}
+                                      onClick={!isLocked ? handleCourseComplete : undefined}
+                                      sx={{
+                                        fontWeight: 500,
+                                        bgcolor: isLocked ? 'grey.500' : 'secondary.light',
+                                        color: isLocked ? 'white' : 'secondary.darker',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                          color: isLocked ? 'grey.100' : 'secondary.lighter',
+                                          transform: 'translateY(-2px)'
+                                        }
+                                      }}
+                                    >
+                                      {isLocked ? 'Locked' : 'Start'}
+                                    </Button>
+                                  )}
                                 </Grid>
                                 {!isLocked && tech.free && (
                                   <Grid item>
