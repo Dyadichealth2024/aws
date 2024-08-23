@@ -1,13 +1,15 @@
 const videoList = [
   {
-    id: 'dQw4w9WgXcQ',
+    id: 'RXSdejd3DkQ',
     title: 'Video 1',
-    thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg'
+    thumbnail: 'https://img.youtube.com/vi/RXSdejd3DkQ/0.jpg'
   },
+   //https://youtu.be/RXSdejd3DkQ
   {
-    id: '3JZ_D3ELwOQ',
+    id: '68Gf4WVhLtk',
     title: 'Video 2',
-    thumbnail: 'https://img.youtube.com/vi/3JZ_D3ELwOQ/0.jpg'
+    thumbnail: 'https://img.youtube.com/vi/68Gf4WVhLtk/0.jpg'
+   //https://youtube.com/shorts/68Gf4WVhLtk?feature=share
   },
   {
     id: 'L_jWHffIx5E',
