@@ -185,12 +185,12 @@ export default function Header({ layout = 'landing', ...others }) {
                     Articles
                   </MenuItem>
                   <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Resources" sx={menuItemStyles}>
-                    Resources
+                    Videos
                   </MenuItem>
                   <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Foundation" sx={menuItemStyles}>
                     Foundation
                   </MenuItem>
-                  <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Traning" sx={menuItemStyles}>
+                  <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Training" sx={menuItemStyles}>
                     Training
                   </MenuItem>
                 </Menu>

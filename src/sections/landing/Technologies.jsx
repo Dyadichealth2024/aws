@@ -1,106 +1,74 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-
-// material-ui
-import Box from '@mui/material/Box';
-import Badge from '@mui/material/Badge';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Alert from '@mui/material/Alert';
+import { Box, Badge, Grid, Button, Link, Container, CardMedia, Typography, IconButton, Alert } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import LockIcon from '@mui/icons-material/Lock';
-
-// third party
 import { motion } from 'framer-motion';
+import FadeInWhenVisible from './Animation'; // Assuming this is a custom animation component
+import MainCard from 'components/MainCard'; // Custom card component
+import { DocumentDownload, ExportSquare } from 'iconsax-react'; // Import icons as needed
 
-// project-imports
-import FadeInWhenVisible from './Animation';
-import MainCard from 'components/MainCard';
-
-// assets
-import { DocumentDownload, ExportSquare } from 'iconsax-react';
+// Dummy Icons (replace these with your actual icon paths)
 import techBootstrap from 'assets/images/landing/tech-bootstrap.svg';
 import techMui from 'assets/images/landing/tech-mui.svg';
 import techAngular from 'assets/images/landing/tech-angular.svg';
 import techNet from 'assets/images/landing/tech-net.svg';
-import techFigma from 'assets/images/landing/tech-figma.svg';
 import techVue from 'assets/images/landing/tech-vuetify.svg';
 import techNextJS from 'assets/images/landing/tech-nextjs.svg';
 
-let value = window.location.search;
-const params = new URLSearchParams(value);
-const ispValue = params.get('isp');
-
+// Dummy Data for Technologies
 const Technologies = [
   {
     trending: false,
     icon: techNet,
-    title: 'Whole Health',
-    description: 'Blending the physical health of a self into the realm of dyadic relationships',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://able-pro.azurewebsites.net/?isp=1'
-      : 'https://able-pro.azurewebsites.net/',
-    free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
+    title: 'Introduction',
+    description: 'Blending the physical health of a self into the realm of dyadic relationships.',
+    route: '/introduction',
+    free: true
   },
   {
     trending: false,
     icon: techBootstrap,
     title: 'Breathing',
-    description: 'Emotional Regulation through improvement of breathing patterns & respiratory health',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://ableproadmin.com?isp=1'
-      : 'https://ableproadmin.com',
-    free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
+    description: 'Emotional regulation through improvement of breathing patterns & respiratory health.',
+    route: '/breathing',
+    free: false
   },
   {
     trending: false,
     icon: techMui,
     title: 'Posture',
-    description: 'Quality interactions within Dyads through improvement of energy and emotional aspects',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://ableproadmin.com/react/?isp=1'
-      : 'https://ableproadmin.com/react/',
-    free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
+    description: 'Quality interactions within Dyads through improvement of energy and emotional aspects.',
+    route: '/posture',
+    free: false
   },
   {
     trending: false,
     icon: techVue,
     title: 'Diet',
     description: 'Nutrient-rich foods reduce stress and increase emotional stability, leading to fewer conflicts.',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://ableproadmin.com/vue/?isp=1'
-      : 'https://ableproadmin.com/vue/',
-    free: null
+    route: '/diet',
+    free: false
   },
   {
     trending: false,
     icon: techAngular,
     title: 'Workouts',
     description: 'Strengthen dyadic relationships by promoting shared activities and mutual support.',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://ableproadmin.com/angular/default/?isp=1'
-      : 'https://ableproadmin.com/angular/default/',
-    free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
+    route: '/workouts',
+    free: false
   },
   {
     trending: false,
     icon: techNextJS,
     title: 'Recovery',
     description: 'Enhance dyadic relationships by promoting shared relaxation and recovery activities.',
-    preview: ispValue !== null && parseInt(ispValue) === 1
-      ? 'https://able-pro-material-next-ts-navy.vercel.app/?isp=1'
-      : 'https://able-pro-material-next-ts-navy.vercel.app/',
-    free: null
+    route: '/recovery',
+    free: false
   }
 ];
 
-// ==============================|| LANDING - TechnologiesPage ||============================== //
-
+// Main Component
 const TechnologiesPage = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [completedCourses, setCompletedCourses] = useState(0); // Track completed courses
@@ -111,7 +79,6 @@ const TechnologiesPage = () => {
   };
 
   const handleCourseComplete = () => {
-    // Simulate course completion
     setCompletedCourses(completedCourses + 1);
     setAlertMessage('');
   };
@@ -125,35 +92,17 @@ const TechnologiesPage = () => {
   return (
     <Box sx={{ backgroundColor: '#f4f6f8', minHeight: '70vh', padding: 3 }}>
       <Container>
-        <Grid
-          container
-          spacing={3}
-          alignItems="center"
-          justifyContent="center"
-          sx={{ mt: { md: 1, xs: 2.5 }, mb: { md: 1, xs: 2.5 } }}
-        >
+        <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 1, xs: 2.5 }, mb: { md: 1, xs: 2.5 } }}>
           <Grid item xs={12}>
             <Grid container spacing={2} sx={{ textAlign: 'center', marginBottom: 3 }}>
               <Grid item xs={12}>
-                <motion.div
-                  initial={{ opacity: 0, translateY: 550 }}
-                  animate={{ opacity: 1, translateY: 0 }}
-                  transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
-                >
-                  <Typography variant="h2" sx={{ fontWeight: 'bold', color: '#37474f' }}>
-                    Strengthen Your Personal Foundation
-                  </Typography>
+                <motion.div initial={{ opacity: 0, translateY: 550 }} animate={{ opacity: 1, translateY: 0 }} transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}>
+                  <Typography variant="h2" sx={{ fontWeight: 'bold', color: '#37474f' }}>Strengthen Your Personal Foundation</Typography>
                 </motion.div>
               </Grid>
               <Grid item xs={12}>
-                <motion.div
-                  initial={{ opacity: 0, translateY: 550 }}
-                  animate={{ opacity: 1, translateY: 0 }}
-                  transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
-                >
-                  <Typography sx={{ color: '#607d8b' }}>
-                    Activities that help strengthen your personal foundation in Dyadic Health
-                  </Typography>
+                <motion.div initial={{ opacity: 0, translateY: 550 }} animate={{ opacity: 1, translateY: 0 }} transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}>
+                  <Typography sx={{ color: '#607d8b' }}>Activities that help strengthen your personal foundation in Dyadic Health</Typography>
                 </motion.div>
               </Grid>
               {alertMessage && (
@@ -162,12 +111,7 @@ const TechnologiesPage = () => {
                     severity="warning"
                     ref={alertRef}
                     action={
-                      <IconButton
-                        aria-label="close"
-                        color="inherit"
-                        size="small"
-                        onClick={() => setAlertMessage('')}
-                      >
+                      <IconButton aria-label="close" color="inherit" size="small" onClick={() => setAlertMessage('')}>
                         <CloseIcon fontSize="inherit" />
                       </IconButton>
                     }
@@ -189,35 +133,41 @@ const TechnologiesPage = () => {
             <Grid container spacing={3} alignItems="center">
               {Technologies.map((tech, index) => {
                 const isLocked = index > completedCourses;
+                const showArrow = tech.title === 'Introduction' && !isLocked;
+
                 return (
                   <Grid item xs={12} md={6} lg={4} key={index}>
-                    <Box sx={{ position: 'relative', borderRadius: '12px', overflow: 'hidden' }}>
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          backgroundColor: isLocked ? 'rgba(0, 0, 0, 0.5)' : 'transparent',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#ffffff',
-                          zIndex: 1,
-                          opacity: 0,
-                          transition: 'opacity 0.3s ease, background-color 0.3s ease',
-                          borderRadius: '12px',
-                          cursor: isLocked ? 'pointer' : 'default',
-                          '&:hover': {
-                            opacity: 1,
-                            backgroundColor: isLocked ? 'rgba(0, 0, 0, 0.5)' : 'transparent',
-                          }
-                        }}
-                        onClick={() => isLocked && handleLockClick(Technologies[completedCourses].title)}
-                      >
-                        {isLocked && <LockIcon sx={{ fontSize: '4rem' }} />}
-                      </Box>
+                    <Box
+                      sx={{
+                        position: 'relative',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        '&:hover .lock-overlay': { opacity: 1 }, // Hover effect to show lock
+                      }}
+                    >
+                      {isLocked && (
+                        <Box
+                          className="lock-overlay"
+                          sx={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff',
+                            zIndex: 1,
+                            opacity: 0, // Initially hidden
+                            transition: 'opacity 0.3s ease, background-color 0.3s ease',
+                          }}
+                          onClick={() => handleLockClick(tech.title)}
+                        >
+                          <LockIcon sx={{ fontSize: '4rem' }} />
+                        </Box>
+                      )}
                       <FadeInWhenVisible>
                         <MainCard sx={{ position: 'relative', overflow: 'hidden', borderRadius: '12px' }}>
                           <Grid container spacing={2}>
@@ -244,12 +194,13 @@ const TechnologiesPage = () => {
                                     variant="contained"
                                     color="secondary"
                                     size="large"
-                                    startIcon={isLocked ? <LockIcon /> : <ExportSquare />}
-                                    component={Link}
-                                    href={isLocked ? '#' : tech.preview}
-                                    target="_blank"
-                                    disabled={isLocked}
-                                    onClick={!isLocked ? handleCourseComplete : undefined}
+                                    startIcon={showArrow ? <ExportSquare /> : <LockIcon />}
+                                    component={RouterLink}
+                                    to={tech.route}
+                                    onClick={() => {
+                                      console.log(`Navigating to ${tech.route}`);
+                                      if (!isLocked) handleCourseComplete();
+                                    }}
                                     sx={{
                                       fontWeight: 500,
                                       bgcolor: isLocked ? 'grey.500' : 'secondary.light',
@@ -257,8 +208,8 @@ const TechnologiesPage = () => {
                                       transition: 'all 0.3s ease',
                                       '&:hover': {
                                         color: isLocked ? 'grey.100' : 'secondary.lighter',
-                                        transform: 'translateY(-2px)'
-                                      }
+                                        transform: 'translateY(-2px)',
+                                      },
                                     }}
                                   >
                                     {isLocked ? 'Locked' : 'Start'}
@@ -266,7 +217,7 @@ const TechnologiesPage = () => {
                                 </Grid>
                                 {!isLocked && tech.free && (
                                   <Grid item>
-                                    <Link component={RouterLink} to={tech.preview}>
+                                    <Link component={RouterLink} to={tech.route}>
                                       <IconButton
                                         size="large"
                                         shape="rounded"
@@ -278,7 +229,7 @@ const TechnologiesPage = () => {
                                           '&:hover': {
                                             color: 'secondary.lighter',
                                             bgcolor: 'secondary.darker',
-                                            transform: 'translateY(-2px)'
+                                            transform: 'translateY(-2px)',
                                           }
                                         }}
                                       >
@@ -302,6 +253,6 @@ const TechnologiesPage = () => {
       </Container>
     </Box>
   );
-}
+};
 
 export default TechnologiesPage;

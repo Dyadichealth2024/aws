@@ -190,7 +190,7 @@ export default function Header({ layout = 'landing', ...others }) {
                   <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Foundation" sx={menuItemStyles}>
                     Foundation
                   </MenuItem>
-                  <MenuItem onClick={handleMenuClose} component={RouterLink} to="/Traning" sx={menuItemStyles}>
+                  <MenuItem onClick={handleMenuClose} component={RouterLink} to="/training" sx={menuItemStyles}>
                     Training
                   </MenuItem>
                 </Menu>

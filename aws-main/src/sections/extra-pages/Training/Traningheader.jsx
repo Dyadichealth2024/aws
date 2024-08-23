@@ -7,7 +7,7 @@ import AuthBackground from 'assets/images/auth/AuthBackground';
 
 // ==============================|| CONTACT US - HEADER ||============================== //
 
-export default function ContactHeader() {
+export default function Trainingheader() {
   return (
     <Box sx={{ position: 'relative', overflow: 'hidden', pt: 9, pb: 2, width: '100vw', left: '50%', transform: 'translateX(-50%)' }}>
       <AuthBackground />

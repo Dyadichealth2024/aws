@@ -3,12 +3,12 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 
 // project imports
-import Traningheader from 'sections/extra-pages/Traning/Traningheader';
-import Traningrelation from 'sections/extra-pages/Traning/Traningrelation';
+import Traningheader from 'sections/extra-pages/Training/Traningheader';
+import Traningrelation from 'sections/extra-pages/Training/Traningrelation';
 
 // ==============================|| training page ||============================== //
 
-export default function Traning() {
+export default function Training() {
   return (
     <Container sx={{ mb: 12 }}>
       <Grid container spacing={4} justifyContent="center" alignItems="center">
@@ -17,7 +17,7 @@ export default function Traning() {
         </Grid>
 
         <Grid item xs={12} >
-          {<Traningrelation /> }
+          {<Trainingrelation /> }
         </Grid>
       </Grid>
     </Container>
