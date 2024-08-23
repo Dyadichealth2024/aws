@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 
 // material-ui
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -14,13 +13,12 @@ import Typography from '@mui/material/Typography';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormHelperText from '@mui/material/FormHelperText';
-
+import Box from '@mui/material/Box';  // Import Box here
 // third-party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project-imports
-import useAuth from 'hooks/useAuth';
 import useScriptRef from 'hooks/useScriptRef';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
@@ -31,15 +29,13 @@ import { strengthColor, strengthIndicator } from 'utils/password-strength';
 // assets
 import { Eye, EyeSlash } from 'iconsax-react';
 
-// ============================|| JWT - REGISTER ||============================ //
-
 export default function AuthRegister() {
-  const { register } = useAuth();
   const scriptedRef = useScriptRef();
   const navigate = useNavigate();
 
   const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
+
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -76,25 +72,20 @@ export default function AuthRegister() {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            // Dynamic database connection
-            const response = await axios.post('http://localhost:5000/register', {
+            const response = await axios.post('https://hmgdrp86cl.execute-api.us-west-2.amazonaws.com/dev/register', {
               firstName: values.firstname,
               lastName: values.lastname,
               companyName: values.company,
               email: values.email,
               password: values.password,
             });
-            console.log(response.data);
             
-            await register(values.email, values.password, values.firstname, values.lastname);
-            if (scriptedRef.current) {
+            if (response.status === 200) {
               setStatus({ success: true });
-              setSubmitting(false);
               openSnackbar({
                 open: true,
                 message: 'Your registration has been successfully completed.',
                 variant: 'alert',
-
                 alert: {
                   color: 'success'
                 }
@@ -103,14 +94,14 @@ export default function AuthRegister() {
               setTimeout(() => {
                 navigate('/login', { replace: true });
               }, 1500);
+            } else {
+              throw new Error('Registration failed');
             }
           } catch (err) {
             console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
+            setStatus({ success: false });
+            setErrors({ submit: err.message });
+            setSubmitting(false);
           }
         }}
       >
@@ -121,8 +112,8 @@ export default function AuthRegister() {
                 <Stack spacing={1}>
                   <InputLabel htmlFor="firstname-signup">First Name*</InputLabel>
                   <OutlinedInput
-                    id="firstname-login"
-                    type="firstname"
+                    id="firstname-signup"
+                    type="text"
                     value={values.firstname}
                     name="firstname"
                     onBlur={handleBlur}
@@ -131,12 +122,12 @@ export default function AuthRegister() {
                     fullWidth
                     error={Boolean(touched.firstname && errors.firstname)}
                   />
+                  {touched.firstname && errors.firstname && (
+                    <FormHelperText error id="helper-text-firstname-signup">
+                      {errors.firstname}
+                    </FormHelperText>
+                  )}
                 </Stack>
-                {touched.firstname && errors.firstname && (
-                  <FormHelperText error id="helper-text-firstname-signup">
-                    {errors.firstname}
-                  </FormHelperText>
-                )}
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack spacing={1}>
@@ -145,20 +136,19 @@ export default function AuthRegister() {
                     fullWidth
                     error={Boolean(touched.lastname && errors.lastname)}
                     id="lastname-signup"
-                    type="lastname"
+                    type="text"
                     value={values.lastname}
                     name="lastname"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     placeholder="Doe"
-                    inputProps={{}}
                   />
+                  {touched.lastname && errors.lastname && (
+                    <FormHelperText error id="helper-text-lastname-signup">
+                      {errors.lastname}
+                    </FormHelperText>
+                  )}
                 </Stack>
-                {touched.lastname && errors.lastname && (
-                  <FormHelperText error id="helper-text-lastname-signup">
-                    {errors.lastname}
-                  </FormHelperText>
-                )}
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
@@ -167,19 +157,19 @@ export default function AuthRegister() {
                     fullWidth
                     error={Boolean(touched.company && errors.company)}
                     id="company-signup"
+                    type="text"
                     value={values.company}
                     name="company"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     placeholder="Demo Inc."
-                    inputProps={{}}
                   />
+                  {touched.company && errors.company && (
+                    <FormHelperText error id="helper-text-company-signup">
+                      {errors.company}
+                    </FormHelperText>
+                  )}
                 </Stack>
-                {touched.company && errors.company && (
-                  <FormHelperText error id="helper-text-company-signup">
-                    {errors.company}
-                  </FormHelperText>
-                )}
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
@@ -187,25 +177,24 @@ export default function AuthRegister() {
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.email && errors.email)}
-                    id="email-login"
+                    id="email-signup"
                     type="email"
                     value={values.email}
                     name="email"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     placeholder="demo@company.com"
-                    inputProps={{}}
                   />
+                  {touched.email && errors.email && (
+                    <FormHelperText error id="helper-text-email-signup">
+                      {errors.email}
+                    </FormHelperText>
+                  )}
                 </Stack>
-                {touched.email && errors.email && (
-                  <FormHelperText error id="helper-text-email-signup">
-                    {errors.email}
-                  </FormHelperText>
-                )}
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="password-signup">Password</InputLabel>
+                  <InputLabel htmlFor="password-signup">Password*</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -225,33 +214,31 @@ export default function AuthRegister() {
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}
                           edge="end"
-                          color="secondary"
                         >
                           {showPassword ? <Eye /> : <EyeSlash />}
                         </IconButton>
                       </InputAdornment>
                     }
                     placeholder="******"
-                    inputProps={{}}
                   />
+                  {touched.password && errors.password && (
+                    <FormHelperText error id="helper-text-password-signup">
+                      {errors.password}
+                    </FormHelperText>
+                  )}
+                  <FormControl fullWidth sx={{ mt: 2 }}>
+                    <Grid container spacing={2} alignItems="center">
+                      <Grid item>
+                        <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="subtitle1" fontSize="0.75rem">
+                          {level?.label}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </FormControl>
                 </Stack>
-                {touched.password && errors.password && (
-                  <FormHelperText error id="helper-text-password-signup">
-                    {errors.password}
-                  </FormHelperText>
-                )}
-                <FormControl fullWidth sx={{ mt: 2 }}>
-                  <Grid container spacing={2} alignItems="center">
-                    <Grid item>
-                      <Box sx={{ bgcolor: level?.color, width: 85, height: 8, borderRadius: '7px' }} />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1" fontSize="0.75rem">
-                        {level?.label}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="body2">
@@ -272,7 +259,15 @@ export default function AuthRegister() {
               )}
               <Grid item xs={12}>
                 <AnimateButton>
-                  <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  <Button
+                    disableElevation
+                    disabled={isSubmitting}
+                    fullWidth
+                    size="large"
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                  >
                     Create Account
                   </Button>
                 </AnimateButton>
