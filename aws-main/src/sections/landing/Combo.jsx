@@ -52,65 +52,20 @@ export default function ComboPage() {
     navigate('/course', { state: { videoList, videosPlayed } });
   };
 
-  const containerStyle = {
-    height: '10cm',
-    overflowY: 'auto',
-  };
-
-  const videoItemStyle = {
-    cursor: 'pointer',
-  };
-
-  const iframeContainerStyle = {
-    position: 'relative',
-    width: '100%',
-    height: '0',
-    paddingBottom: '56.25%',
-  };
-
-  const iframeStyle = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    border: 0,
-  };
-
-  const thumbnailOverlayStyle = {
-    position: 'relative',
-    width: '100%',
-    maxWidth: '100%',
-    height: 'auto',
-    cursor: 'pointer',
-  };
-
-  const overlayTextStyle = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    color: 'white',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: '10px',
-    borderRadius: '5px',
-    textAlign: 'center',
-  };
-
   const selectedVideoData = videoList.find((video) => video.id === selectedVideo);
   const shouldShowContinueOverlay = videosPlayed.length >= 2 && !videosPlayed.includes(selectedVideo);
 
   return (
-    <Box sx={{ backgroundColor: '#ffffff', minHeight: '70vh', padding: 3 }}>
+    <Box sx={{ backgroundColor: '#ffffff', minHeight: '70vh', p: 3 }}>
       <Container>
-        <Box sx={{ marginBottom: 5, marginTop: 2 }}>
+        <Box sx={{ mb: 5, mt: 2 }}>
           <Typography variant="h4" align="center" gutterBottom>
             Learning Resources
           </Typography>
         </Box>
         <Grid container spacing={3} alignItems="center" justifyContent="center">
           <Grid item xs={12} md={6}>
-            <MainCard style={{ ...containerStyle, backgroundColor: '#80b3ff' }}>
+            <MainCard sx={{ height: '10cm', overflowY: 'auto', backgroundColor: '#80b3ff' }}>
               <Grid container spacing={2}>
                 {videoList.map((video, index) => (
                   <Grid
@@ -120,7 +75,7 @@ export default function ComboPage() {
                     md={4}
                     key={index}
                     onClick={() => handleVideoSelect(video.id)}
-                    style={videoItemStyle}
+                    sx={{ cursor: 'pointer' }}
                   >
                     <Stack spacing={1} alignItems="center">
                       <Typography variant="body2" align="center" noWrap>
@@ -138,24 +93,24 @@ export default function ComboPage() {
             </MainCard>
           </Grid>
           <Grid item xs={12} md={6}>
-            <MainCard style={{ ...containerStyle, backgroundColor: '#80b3ff' }}>
+            <MainCard sx={{ height: '10cm', backgroundColor: '#80b3ff' }}>
               {shouldShowContinueOverlay ? (
-                <Box onClick={handleContinue} style={thumbnailOverlayStyle}>
+                <Box onClick={handleContinue} sx={{ position: 'relative', width: '100%', maxWidth: '100%', height: 'auto', cursor: 'pointer' }}>
                   <CardMedia
                     component="img"
                     image={selectedVideoData.thumbnail}
                     sx={{ width: '100%', height: 'auto', maxHeight: '300px', objectFit: 'contain' }}
                   />
-                  <Typography variant="h6" sx={overlayTextStyle}>
+                  <Typography variant="h6" sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)', p: '10px', borderRadius: '5px', textAlign: 'center' }}>
                     Continue to Course
                   </Typography>
                 </Box>
               ) : (
-                <Box style={iframeContainerStyle}>
+                <Box sx={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}>
                   <Box
                     component="iframe"
                     src={`https://www.youtube.com/embed/${selectedVideo}${shouldAutoplay ? '?autoplay=1' : ''}`}
-                    style={iframeStyle}
+                    sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     onPlay={selectedVideo === initialVideoId ? handleInitialVideoPlay : undefined}
